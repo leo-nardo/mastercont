@@ -9,17 +9,21 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "MASTERCONT - Contadores Associados | Contabilidade de Alto Padrão",
+  title:
+    "MASTERCONT - Contadores Associados em Palmas TO | Contabilidade de Alto Padrão",
   description:
-    "Escritório contábil de alto padrão especializado em gestão fiscal, planejamento tributário e consultoria empresarial. Transformamos a contabilidade da sua empresa em vantagem competitiva.",
+    "Escritório de contabilidade em Palmas - Tocantins. Especialistas em planejamento tributário, gestão fiscal, abertura de empresas e consultoria empresarial. Atendimento personalizado para empresas que buscam crescimento sólido na região.",
   keywords:
-    "contabilidade, planejamento tributário, gestão fiscal, consultoria empresarial, contadores, MASTERCONT",
+    "contador em Palmas, contabilidade Palmas Tocantins, escritório contábil Palmas TO, planejamento tributário Palmas, abertura de empresa Palmas, gestão fiscal Tocantins, contador especialista Palmas, MASTERCONT, contadores associados Palmas",
   openGraph: {
-    title: "MASTERCONT - Contadores Associados",
+    title: "MASTERCONT - Escritório de Contabilidade em Palmas TO",
     description:
-      "Contabilidade de Alto Padrão. Transformamos números em estratégia.",
+      "Contabilidade de alto padrão em Palmas - Tocantins. Planejamento tributário, gestão fiscal e consultoria empresarial para o seu negócio crescer.",
     type: "website",
+    locale: "pt_BR",
   },
+  robots: { index: true, follow: true },
+  alternates: { canonical: "https://www.mastercont.com.br" },
 };
 
 export default function RootLayout({

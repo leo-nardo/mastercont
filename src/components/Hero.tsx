@@ -52,6 +52,16 @@ export default function Hero() {
           </div>
         </motion.div>
 
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-xs sm:text-sm tracking-[0.3em] uppercase mb-4"
+          style={{ color: "var(--text-accent)" }}
+        >
+          Escritório de Contabilidade em Palmas&nbsp;–&nbsp;TO
+        </motion.p>
+
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -59,9 +69,9 @@ export default function Hero() {
           className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-tight tracking-tight mb-6"
           style={{ color: "var(--text-primary)" }}
         >
-          Transformamos contabilidade
+          Contabilidade que transforma
           <br />
-          <span className="font-semibold">em vantagem competitiva</span>
+          <span className="font-semibold">números em vantagem competitiva</span>
         </motion.h1>
 
         <motion.p
@@ -71,9 +81,9 @@ export default function Hero() {
           className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
           style={{ color: "var(--text-muted)" }}
         >
-          Gestão fiscal estratégica, planejamento tributário inteligente e
-          consultoria empresarial de alto nível para empresas que buscam
-          crescimento sólido e sustentável.
+          Planejamento tributário, gestão fiscal estratégica e consultoria
+          empresarial de alto nível em Palmas e todo o Tocantins. Para empresas
+          que buscam crescimento sólido e sustentável.
         </motion.p>
 
         <motion.div
