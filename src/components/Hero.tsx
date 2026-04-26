@@ -50,7 +50,7 @@ export default function Hero() {
         <div className="hero-media">
           <div className="hero-photo">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/team-together.jpeg" alt="Equipe Mastercont" />
+            <img src="/images/team-together.webp" alt="Equipe Mastercont" />
             <div className="hero-photo-overlay" />
             <div className="hero-photo-badge">
               <span className="hero-badge-label mono">CRC/TO</span>
@@ -72,6 +72,8 @@ export default function Hero() {
             radial-gradient(60% 40% at 0% 100%, rgba(201,169,97,.05), transparent 60%),
             var(--ink);
           color: var(--paper);
+          min-height: calc(100svh - 56px);
+          display: flex; flex-direction: column;
         }
         .hero-grain {
           position: absolute; inset: 0;
@@ -80,12 +82,13 @@ export default function Hero() {
         }
 
         .hero-inner {
-          max-width: 1240px; margin: 0 auto;
-          padding: clamp(72px,10vw,140px) clamp(20px,4vw,48px) clamp(72px,10vw,120px);
+          max-width: 1240px; margin: 0 auto; width: 100%;
+          padding: clamp(36px,5vw,72px) clamp(20px,4vw,48px);
           display: grid;
           grid-template-columns: 1.1fr 0.9fr;
           gap: clamp(32px,5vw,72px);
           align-items: center; position: relative; z-index: 2;
+          flex: 1;
         }
 
         .hero-copy { display: flex; flex-direction: column; }
@@ -134,7 +137,8 @@ export default function Hero() {
         .hero-media { position: relative; }
         .hero-photo {
           position: relative; border-radius: 2px; overflow: hidden;
-          aspect-ratio: 3/4; max-height: 620px;
+          aspect-ratio: 3/4;
+          max-height: min(580px, calc(100svh - 180px));
           box-shadow: 0 40px 80px rgba(0,0,0,.5);
         }
         .hero-photo img {
@@ -173,12 +177,8 @@ export default function Hero() {
 
         /* ── Mobile ── */
         @media (max-width: 860px) {
-          .hero-inner {
-            grid-template-columns: 1fr;
-            padding-top: clamp(56px, 12vw, 80px);
-            padding-bottom: clamp(56px, 10vw, 80px);
-          }
-          .hero-photo { aspect-ratio: 4/3; max-height: 360px; }
+          .hero-inner { grid-template-columns: 1fr; }
+          .hero-photo { aspect-ratio: 4/3; max-height: 320px; }
           .hero-photo img { object-position: center 20%; }
         }
         @media (max-width: 540px) {

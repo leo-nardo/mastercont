@@ -1,9 +1,9 @@
 "use client";
 
 const socios = [
-  { name: "Yuri Morais de Sales", role: "Sócio-Fundador", img: "/images/yuri.jpeg" },
-  { name: "Paulo Henrique Sousa Santos", role: "Sócio-Fundador", img: "/images/paulo.jpeg" },
-  { name: "Jaques Oliveira da Silva", role: "Sócio-Fundador", img: "/images/jaques.jpeg" },
+  { name: "Yuri Morais de Sales", role: "Sócio-Fundador", img: "/images/yuri.webp" },
+  { name: "Paulo Henrique Sousa Santos", role: "Sócio-Fundador", img: "/images/paulo.webp" },
+  { name: "Jaques Oliveira da Silva", role: "Sócio-Fundador", img: "/images/jaques.webp" },
 ];
 
 export default function Founders() {
