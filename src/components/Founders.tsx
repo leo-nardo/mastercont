@@ -1,121 +1,171 @@
 "use client";
 
-import { motion } from "framer-motion";
-import AnimatedSection from "./AnimatedSection";
+const socios = [
+  { name: "Yuri Morais de Sales", role: "CEO & Sócio-Fundador", img: "/images/yuri.jpeg" },
+  { name: "Paulo Henrique Sousa Santos", role: "CEO & Sócio-Fundador", img: "/images/paulo.jpeg" },
+  { name: "Jaques Oliveira da Silva", role: "CEO & Sócio-Fundador", img: "/images/jaques.jpeg" },
+];
 
 export default function Founders() {
   return (
-    <section id="sobre" className="relative">
-      <div className="relative w-full h-[60vh] md:h-[75vh] lg:h-[85vh] overflow-hidden">
-        <motion.div
-          initial={{ scale: 1.1 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: [0.25, 0.1, 0.25, 1] }}
-          className="absolute inset-0 bg-cover bg-top bg-fixed bg-charcoal-lighter"
-          style={{ backgroundImage: "url('/images/founders.webp')" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[rgba(0,0,0,0.4)] to-[rgba(0,0,0,0.2)]" />
+    <section
+      id="sobre"
+      style={{
+        background: "var(--ink)",
+        color: "var(--paper)",
+        padding: "clamp(80px,10vw,140px) 0",
+      }}
+    >
+      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)" }}>
+        {/* About grid */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "1.1fr 0.9fr",
+          gap: "clamp(40px,6vw,80px)",
+          alignItems: "start",
+          marginBottom: 80,
+        }} className="about-main-grid">
+          {/* Copy */}
+          <div>
+            <span className="eyebrow on-dark"><span className="mono">Sobre a Mastercont</span></span>
+            <h2 style={{
+              fontFamily: "var(--serif)",
+              fontSize: "clamp(38px,5.2vw,64px)",
+              lineHeight: 1.02,
+              marginTop: 20,
+              color: "var(--paper)",
+            }}>
+              Uma nova geração<br />
+              de contabilidade{" "}
+              <span className="italic-gold">em Palmas</span>.
+            </h2>
+            <p style={{ fontSize: 17, color: "#b8b0a3", marginTop: 28, maxWidth: "52ch", lineHeight: 1.6 }}>
+              Somos um escritório de contabilidade com atuação consultiva, que une estratégia e
+              tecnologia para transformar dados em inteligência de negócio.
+            </p>
+            <p style={{ fontSize: 17, color: "#b8b0a3", marginTop: 16, maxWidth: "52ch", lineHeight: 1.6 }}>
+              Mais do que cumprir obrigações fiscais, entregamos análises, planejamento tributário
+              e suporte gerencial, utilizando ferramentas modernas para garantir mais agilidade,
+              controle e precisão nas informações.
+            </p>
+            <p style={{ fontSize: 17, color: "#b8b0a3", marginTop: 16, maxWidth: "52ch", lineHeight: 1.6 }}>
+              Com atendimento próximo e visão estratégica, ajudamos sua empresa a reduzir custos,
+              tomar decisões mais seguras e crescer de forma sustentável.
+            </p>
 
-        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16">
-          <AnimatedSection>
-            <div className="max-w-7xl mx-auto">
-              <motion.span
-                initial={{ width: 0 }}
-                whileInView={{ width: "3rem" }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="h-[2px] bg-gold block mb-4"
-              />
-              <span className="text-xs tracking-[0.4em] text-gold uppercase mb-4 block">
-                Liderança
-              </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-3">
-                Sócios <span className="font-semibold">Fundadores</span>
-              </h2>
-              <p className="text-silver-light text-base md:text-lg max-w-xl leading-relaxed">
-                Três décadas de experiência combinada em contabilidade
-                estratégica, unidas por uma visão: elevar o padrão da gestão
-                contábil empresarial no Brasil.
-              </p>
+            {/* Credentials */}
+            <div style={{
+              display: "flex",
+              gap: 40,
+              marginTop: 40,
+              paddingTop: 28,
+              borderTop: "1px solid rgba(255,255,255,0.08)",
+              flexWrap: "wrap",
+            }}>
+              <Cred label="CRC/TO" value="000860/O" />
+              <Cred label="CNPJ" value="47.321.741/0001-38" />
+              <Cred label="FUNDAÇÃO" value="Jul · 2022" />
             </div>
-          </AnimatedSection>
-        </div>
-      </div>
+          </div>
 
-      <div className="py-20 md:py-28" style={{ background: "var(--bg-primary)" }}>
-        <div className="max-w-7xl mx-auto px-5 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <AnimatedSection direction="left">
-              <span
-                className="text-xs tracking-[0.4em] uppercase mb-6 block"
-                style={{ color: "var(--text-accent)" }}
-              >
-                Nossa Filosofia
-              </span>
-              <h2
-                className="text-3xl md:text-4xl font-light mb-6"
-                style={{ color: "var(--text-primary)" }}
-              >
-                Excelência como
-                <br />
-                <span className="font-semibold">padrão mínimo</span>
-              </h2>
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "4rem" }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="h-[1px] bg-gold mb-6"
-              />
-              <p className="leading-relaxed mb-6" style={{ color: "var(--text-muted)" }}>
-                Na MASTERCONT, acreditamos que a contabilidade vai muito além de
-                cumprir obrigações. É sobre transformar dados em inteligência,
-                números em estratégia, e compliance em vantagem competitiva.
-              </p>
-              <p className="leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                Cada cliente recebe atenção personalizada de uma equipe sênior,
-                com análises proativas que antecipam cenários e protegem o
-                patrimônio da sua empresa.
-              </p>
-            </AnimatedSection>
-
-            <AnimatedSection direction="right">
-              <div className="grid grid-cols-2 gap-6">
-                {[
-                  { number: "500+", label: "Empresas Atendidas" },
-                  { number: "15+", label: "Anos de Mercado" },
-                  { number: "98%", label: "Retenção de Clientes" },
-                  { number: "3", label: "Sócios Especialistas" },
-                ].map((stat, i) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    className="p-6 border text-center transition-colors duration-300"
-                    style={{ borderColor: "var(--border-subtle)" }}
-                  >
-                    <span
-                      className="text-2xl md:text-3xl font-bold block mb-1"
-                      style={{ color: "var(--color-gold)" }}
-                    >
-                      {stat.number}
-                    </span>
-                    <span
-                      className="text-xs tracking-wider uppercase"
-                      style={{ color: "var(--text-muted)" }}
-                    >
-                      {stat.label}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </AnimatedSection>
+          {/* Photo */}
+          <div style={{ position: "relative", borderRadius: 2, overflow: "hidden", aspectRatio: "4/5", boxShadow: "0 40px 80px rgba(0,0,0,0.4)" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/team-together.jpeg"
+              alt="Equipe Mastercont no escritório"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                filter: "contrast(1.02) saturate(0.9) brightness(0.95)",
+                objectPosition: "center 30%",
+              }}
+            />
+            <div style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(180deg,transparent 60%,rgba(10,10,10,0.7) 100%)",
+            }} />
+            <div style={{ position: "absolute", bottom: 20, left: 20, zIndex: 2 }}>
+              <span className="mono" style={{ fontSize: 10, letterSpacing: "0.2em", color: "var(--gold)" }}>ESCRITÓRIO MASTERCONT</span>
+              <span style={{ display: "block", marginTop: 4, fontSize: 12, color: "#b8b0a3" }}>Palmas — Tocantins</span>
+            </div>
           </div>
         </div>
+
+        {/* Founders grid */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+          gap: 24,
+          paddingTop: 60,
+          borderTop: "1px solid rgba(255,255,255,0.08)",
+        }}>
+          {socios.map((s) => (
+            <article key={s.name} style={{ display: "flex", flexDirection: "column" }}>
+              <div style={{
+                aspectRatio: "3/4",
+                overflow: "hidden",
+                background: "var(--ink-2)",
+                border: "1px solid rgba(255,255,255,0.05)",
+              }}
+                onMouseEnter={e => {
+                  const img = e.currentTarget.querySelector("img") as HTMLImageElement | null;
+                  if (img) { img.style.filter = "none"; img.style.transform = "scale(1.02)"; }
+                }}
+                onMouseLeave={e => {
+                  const img = e.currentTarget.querySelector("img") as HTMLImageElement | null;
+                  if (img) { img.style.filter = "grayscale(0.15) contrast(1.02)"; img.style.transform = "none"; }
+                }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={s.img}
+                  alt={s.name}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center 15%",
+                    filter: "grayscale(0.15) contrast(1.02)",
+                    transition: "filter .4s, transform .5s",
+                  }}
+                />
+              </div>
+              <div style={{ padding: "20px 4px 0" }}>
+                <div className="mono" style={{ fontSize: 10, letterSpacing: "0.2em", color: "var(--gold)" }}>
+                  {s.role.toUpperCase()}
+                </div>
+                <h3 style={{
+                  fontFamily: "var(--serif)",
+                  fontSize: 26,
+                  marginTop: 8,
+                  color: "var(--paper)",
+                  lineHeight: 1.15,
+                }}>
+                  {s.name}
+                </h3>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .about-main-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
+  );
+}
+
+function Cred({ label, value }: { label: string; value: string }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+      <div className="mono" style={{ fontSize: 10, letterSpacing: "0.2em", color: "#8f887c" }}>{label}</div>
+      <div style={{ fontFamily: "var(--serif)", fontSize: 22, color: "var(--paper)", letterSpacing: "-0.01em" }}>{value}</div>
+    </div>
   );
 }

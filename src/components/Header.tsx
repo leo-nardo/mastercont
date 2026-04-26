@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "./ThemeProvider";
+
+const WA_LINK = "https://wa.me/556332150954?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Mastercont%20e%20gostaria%20de%20falar%20com%20voc%C3%AAs.";
 
 const navLinks = [
-  { label: "Início", href: "#inicio" },
   { label: "Serviços", href: "#servicos" },
+  { label: "Recuperação Tributária", href: "#recuperacao" },
   { label: "Sobre", href: "#sobre" },
   { label: "Depoimentos", href: "#depoimentos" },
   { label: "Contato", href: "#contato" },
@@ -14,177 +14,196 @@ const navLinks = [
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const { theme, toggle } = useTheme();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const h = () => setScrolled(window.scrollY > 20);
+    h();
+    window.addEventListener("scroll", h, { passive: true });
+    return () => window.removeEventListener("scroll", h);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [mobileOpen]);
+  }, [open]);
 
   return (
-    <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-      style={{
-        background: scrolled ? `color-mix(in srgb, var(--bg-primary) 95%, transparent)` : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? "1px solid var(--border-subtle)" : "1px solid transparent",
-        padding: scrolled ? "0.75rem 0" : "1.25rem 0",
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between">
-        <a href="#inicio" className="relative z-50">
-          <span
-            className="text-xl md:text-2xl font-bold tracking-[0.15em]"
-            style={{ color: "var(--color-gold)" }}
-          >
-            MASTERCONT
-          </span>
-        </a>
+    <>
+      <header
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 50,
+          background: scrolled ? "rgba(246,243,236,.95)" : "rgba(246,243,236,.82)",
+          backdropFilter: "blur(14px)",
+          WebkitBackdropFilter: "blur(14px)",
+          borderBottom: `1px solid ${scrolled ? "var(--line-light)" : "transparent"}`,
+          transition: "background .3s, border-color .3s",
+        }}
+      >
+        <div style={{
+          maxWidth: 1240,
+          margin: "0 auto",
+          padding: "16px clamp(20px,4vw,48px)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 24,
+        }}>
+          {/* Brand */}
+          <a href="#top" style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <MasterMark />
+            <span style={{ fontFamily: "var(--serif)", fontSize: 22, letterSpacing: "0.01em", color: "var(--ink)" }}>
+              Mastercont
+            </span>
+            <span style={{
+              fontFamily: "var(--mono)",
+              fontSize: 10,
+              textTransform: "uppercase",
+              letterSpacing: "0.18em",
+              color: "var(--muted)",
+              borderLeft: "1px solid var(--line-light)",
+              paddingLeft: 10,
+              marginLeft: 4,
+            }}>
+              CRC/TO 000860/O
+            </span>
+          </a>
 
-        <nav className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
+          {/* Desktop nav */}
+          <nav style={{ display: "flex", gap: 28, alignItems: "center" }} className="hidden-mobile">
+            {navLinks.map(({ label, href }) => (
+              <a
+                key={href}
+                href={href}
+                style={{
+                  fontSize: 14,
+                  color: "var(--ink)",
+                  opacity: 0.75,
+                  position: "relative",
+                  transition: "opacity .2s",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = "1")}
+                onMouseLeave={e => (e.currentTarget.style.opacity = "0.75")}
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
+
+          {/* CTA */}
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <a
-              key={link.href}
-              href={link.href}
-              className="text-sm tracking-wider uppercase transition-colors duration-300 hover:!text-[var(--color-gold)]"
-              style={{ color: "var(--text-muted)" }}
+              href={WA_LINK}
+              target="_blank"
+              rel="noopener"
+              className="btn btn-gold"
+              style={{ padding: "11px 18px", fontSize: 13 }}
             >
-              {link.label}
+              <WAIcon />
+              Falar no WhatsApp
+            </a>
+            <button
+              onClick={() => setOpen(true)}
+              aria-label="Menu"
+              className="burger-btn"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 4,
+                padding: 10,
+              }}
+            >
+              <span style={{ width: 20, height: 1.5, background: "var(--ink)", display: "block" }} />
+              <span style={{ width: 20, height: 1.5, background: "var(--ink)", display: "block" }} />
+              <span style={{ width: 20, height: 1.5, background: "var(--ink)", display: "block" }} />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile menu */}
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          background: "var(--ink)",
+          color: "var(--paper)",
+          zIndex: 100,
+          display: "flex",
+          flexDirection: "column",
+          padding: "24px clamp(20px,4vw,48px)",
+          transform: open ? "none" : "translateY(-100%)",
+          transition: "transform .4s cubic-bezier(.8,0,.2,1)",
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span style={{ fontFamily: "var(--serif)", fontSize: 22, color: "var(--paper)" }}>Mastercont</span>
+          <button onClick={() => setOpen(false)} style={{ fontSize: 24, padding: 10, color: "var(--paper)" }}>✕</button>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 18, marginTop: 40 }}>
+          {navLinks.map(({ label, href }) => (
+            <a
+              key={href}
+              href={href}
+              onClick={() => setOpen(false)}
+              style={{ fontFamily: "var(--serif)", fontSize: 36, color: "var(--paper)" }}
+            >
+              {label}
             </a>
           ))}
-
-          <button
-            onClick={toggle}
-            className="ml-2 w-9 h-9 rounded-full flex items-center justify-center border transition-all duration-300 hover:border-[var(--color-gold)]"
-            style={{
-              borderColor: "var(--border-subtle)",
-              color: "var(--text-muted)",
-            }}
-            aria-label="Alternar tema"
-          >
-            {theme === "dark" ? (
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="5" />
-                <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-              </svg>
-            ) : (
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-              </svg>
-            )}
-          </button>
-
+        </div>
+        <div style={{ marginTop: "auto", paddingTop: 40 }}>
           <a
-            href="#contato"
-            className="ml-2 px-6 py-2.5 text-sm font-semibold tracking-wider uppercase transition-colors duration-300"
-            style={{
-              backgroundColor: "var(--color-gold)",
-              color: "var(--bg-primary)",
-            }}
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener"
+            className="btn btn-gold"
+            style={{ width: "100%", justifyContent: "center" }}
           >
-            Fale Conosco
+            <WAIcon /> Falar no WhatsApp
           </a>
-        </nav>
-
-        <div className="flex items-center gap-3 lg:hidden">
-          <button
-            onClick={toggle}
-            className="relative z-50 w-9 h-9 rounded-full flex items-center justify-center border transition-all duration-300"
-            style={{
-              borderColor: "var(--border-subtle)",
-              color: "var(--text-muted)",
-            }}
-            aria-label="Alternar tema"
-          >
-            {theme === "dark" ? (
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="5" />
-                <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-              </svg>
-            ) : (
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-              </svg>
-            )}
-          </button>
-
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="relative z-50 w-8 h-8 flex flex-col items-center justify-center gap-1.5"
-            aria-label="Menu"
-          >
-            <span
-              className="w-6 h-[2px] transition-all duration-300"
-              style={{
-                backgroundColor: "var(--color-gold)",
-                transform: mobileOpen ? "rotate(45deg) translateY(5px)" : "none",
-              }}
-            />
-            <span
-              className="w-6 h-[2px] transition-all duration-300"
-              style={{
-                backgroundColor: "var(--color-gold)",
-                opacity: mobileOpen ? 0 : 1,
-              }}
-            />
-            <span
-              className="w-6 h-[2px] transition-all duration-300"
-              style={{
-                backgroundColor: "var(--color-gold)",
-                transform: mobileOpen ? "rotate(-45deg) translateY(-5px)" : "none",
-              }}
-            />
-          </button>
         </div>
       </div>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 lg:hidden flex flex-col items-center justify-center"
-            style={{ background: "color-mix(in srgb, var(--bg-primary) 98%, transparent)" }}
-          >
-            <nav className="flex flex-col items-center gap-8">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.08 }}
-                  className="text-lg tracking-[0.2em] uppercase transition-colors hover:!text-[var(--color-gold)]"
-                  style={{ color: "var(--text-secondary)" }}
-                >
-                  {link.label}
-                </motion.a>
-              ))}
-              <motion.a
-                href="#contato"
-                onClick={() => setMobileOpen(false)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navLinks.length * 0.08 }}
-                className="mt-4 px-8 py-3 font-semibold tracking-wider uppercase"
-                style={{ backgroundColor: "var(--color-gold)", color: "var(--bg-primary)" }}
-              >
-                Fale Conosco
-              </motion.a>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
+      <style>{`
+        .hidden-mobile { display: none !important; }
+        .burger-btn { display: inline-flex !important; }
+        @media (min-width: 900px) {
+          .hidden-mobile { display: flex !important; }
+          .burger-btn { display: none !important; }
+        }
+      `}</style>
+    </>
+  );
+}
+
+function MasterMark() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="mgold" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#e8d9a8"/>
+          <stop offset="0.5" stopColor="#c9a961"/>
+          <stop offset="1" stopColor="#a8873f"/>
+        </linearGradient>
+        <linearGradient id="msilv" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#cfcfcf"/>
+          <stop offset="1" stopColor="#7a7a7a"/>
+        </linearGradient>
+      </defs>
+      <path d="M5 34 L12 6 L20 22 L28 6 L35 34 L29 34 L25 16 L20 28 L15 16 L11 34 Z" fill="url(#mgold)"/>
+      <path d="M5 34 L12 6 L20 22 L15 16 L11 34 Z" fill="url(#msilv)" opacity="0.85"/>
+      <line x1="4" y1="38" x2="36" y2="4" stroke="url(#mgold)" strokeWidth="0.8"/>
+    </svg>
+  );
+}
+
+function WAIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 15, height: 15 }}>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
   );
 }

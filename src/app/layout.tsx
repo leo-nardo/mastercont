@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import ThemeProvider from "@/components/ThemeProvider";
+import { Geist, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -8,17 +7,24 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: ["400"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title:
-    "MASTERCONT - Contadores Associados em Palmas TO | Contabilidade de Alto Padrão",
+    "Mastercont – Contabilidade Consultiva em Palmas TO | CRC/TO 000860/O",
   description:
-    "Escritório de contabilidade em Palmas - Tocantins. Especialistas em planejamento tributário, gestão fiscal, abertura de empresas e consultoria empresarial. Atendimento personalizado para empresas que buscam crescimento sólido na região.",
+    "Escritório de contabilidade consultiva em Palmas — Tocantins. Planejamento tributário, recuperação tributária, BPO financeiro e consultoria empresarial. Transformamos números em decisões estratégicas. CRC/TO 000860/O.",
   keywords:
-    "contador em Palmas, contabilidade Palmas Tocantins, escritório contábil Palmas TO, planejamento tributário Palmas, abertura de empresa Palmas, gestão fiscal Tocantins, contador especialista Palmas, MASTERCONT, contadores associados Palmas",
+    "contador em Palmas, contabilidade Palmas Tocantins, recuperação tributária Palmas, planejamento tributário Palmas TO, abertura de empresa Palmas, departamento pessoal Tocantins, BPO financeiro Palmas, Mastercont, CRC/TO 000860",
   openGraph: {
-    title: "MASTERCONT - Escritório de Contabilidade em Palmas TO",
+    title: "Mastercont – Contabilidade Consultiva em Palmas TO",
     description:
-      "Contabilidade de alto padrão em Palmas - Tocantins. Planejamento tributário, gestão fiscal e consultoria empresarial para o seu negócio crescer.",
+      "Contabilidade consultiva que transforma números em decisões estratégicas. Planejamento tributário, recuperação tributária e gestão empresarial em Palmas — TO.",
     type: "website",
     locale: "pt_BR",
   },
@@ -32,10 +38,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${geistSans.variable} antialiased`}>
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
+    <html lang="pt-BR" className={`${geistSans.variable} ${instrumentSerif.variable} antialiased`}>
+      <body>{children}</body>
     </html>
   );
 }

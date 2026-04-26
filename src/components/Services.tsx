@@ -1,136 +1,347 @@
 "use client";
 
-import { motion } from "framer-motion";
-import AnimatedSection from "./AnimatedSection";
+import { useState } from "react";
 
-const services = [
+const WA_NUMBER = "556332150954";
+function waUrl(text: string) {
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
+const SERVICES = [
   {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8">
-        <path d="M9 7h6m-6 4h6m-6 4h4M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    key: "gestao-fiscal",
+    tag: "Obrigações",
     title: "Gestão Fiscal",
-    description:
-      "Controle rigoroso das obrigações fiscais, garantindo conformidade total e otimização da carga tributária da sua empresa.",
+    summary: "Escrituração, apurações e obrigações fiscais em dia — federal, estadual e municipal.",
+    bullets: [
+      "Apuração de impostos e envio de declarações",
+      "Escrituração fiscal digital (EFD / SPED)",
+      "Controle de obrigações acessórias",
+      "Monitoramento de prazos e alertas",
+    ],
   },
   {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8">
-        <path d="M13 7l5 5m0 0l-5 5m5-5H6M3 12a9 9 0 1118 0 9 9 0 01-18 0z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    key: "planejamento",
+    tag: "Estratégia",
     title: "Planejamento Tributário",
-    description:
-      "Estratégias legais e inteligentes para redução de impostos, maximizando o lucro sem riscos fiscais.",
+    summary: "Reduza legalmente a carga tributária com o regime certo e decisões fiscais bem planejadas.",
+    bullets: [
+      "Análise de regime (Simples, Presumido, Real)",
+      "Simulações comparativas de carga",
+      "Planejamento anual e revisões periódicas",
+      "Oportunidades setoriais de economia",
+    ],
   },
   {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8">
-        <path d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V5a2 2 0 00-2-2H6a2 2 0 00-2 2v14a2 2 0 002 2z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    key: "recuperacao",
+    tag: "Dinheiro de volta",
+    title: "Recuperação Tributária",
+    featured: true,
+    summary: "Restituição de PIS e COFINS pagos indevidamente em produtos monofásicos — comum em varejo e revendedores.",
+    bullets: [
+      "Auditoria dos últimos 5 anos",
+      "Levantamento de créditos elegíveis",
+      "Retificação de declarações",
+      "Acompanhamento até o crédito",
+    ],
+  },
+  {
+    key: "consultoria",
+    tag: "Consultoria",
     title: "Consultoria Empresarial",
-    description:
-      "Análises financeiras profundas e orientação estratégica para decisões empresariais assertivas e crescimento sustentável.",
+    summary: "Consultoria tributária e contábil, regularização de pendências e auditoria em todas as esferas.",
+    bullets: [
+      "Consultoria tributária e contábil",
+      "Regularização fiscal e cadastral",
+      "Auditoria e perícia contábil",
+      "Declarações de pessoa física (ITR)",
+    ],
   },
   {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8">
-        <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-    title: "Departamento Pessoal",
-    description:
-      "Gestão completa de folha de pagamento, encargos trabalhistas e conformidade com a legislação vigente.",
+    key: "dp",
+    tag: "Pessoas",
+    title: "Departamento Pessoal / RH",
+    summary: "Folha, admissões, obrigações trabalhistas e soluções para empregado doméstico e MEI.",
+    bullets: [
+      "Folha de pagamento e eSocial",
+      "Admissões, férias e rescisões",
+      "Formalização de empregado doméstico",
+      "Abertura, regularização e baixa de MEI",
+    ],
   },
   {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8">
-        <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    key: "bpo",
+    tag: "Financeiro",
     title: "BPO Financeiro",
-    description:
-      "Terceirização inteligente do financeiro, com controle de contas a pagar, receber e fluxo de caixa em tempo real.",
+    summary: "Terceirize contas a pagar, a receber, conciliações e relatórios com uma equipe especializada.",
+    bullets: [
+      "Contas a pagar e a receber",
+      "Conciliação bancária diária",
+      "Cobranças e acompanhamento de inadimplência",
+      "Relatórios gerenciais mensais",
+    ],
   },
   {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8">
-        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-    title: "Abertura de Empresas",
-    description:
-      "Assessoria completa na constituição societária, escolha do regime tributário ideal e legalização do seu negócio.",
+    key: "abertura",
+    tag: "Novos negócios",
+    title: "Abertura e Legalização",
+    summary: "Abertura, alteração, transferência e baixa de empresas com agilidade e segurança jurídica.",
+    bullets: [
+      "Constituição de empresas",
+      "Alteração contratual e transferência",
+      "Regularização em órgãos fiscais",
+      "Procurações e contratos",
+    ],
+  },
+  {
+    key: "extras",
+    tag: "Apoio",
+    title: "Certificado Digital + Registro de Marcas",
+    summary: "Emissão rápida de Certificado Digital e registro de marca junto ao INPI para proteger sua identidade.",
+    bullets: [
+      "Emissão e renovação de Certificado Digital",
+      "Suporte completo na instalação",
+      "Registro de marca no INPI",
+      "Proteção contra uso indevido de terceiros",
+    ],
   },
 ];
 
 export default function Services() {
+  const [openKey, setOpenKey] = useState<string | null>(null);
+
   return (
     <section
       id="servicos"
-      className="py-24 md:py-32 relative"
-      style={{ background: "var(--bg-secondary)" }}
+      style={{
+        background: "var(--ink)",
+        color: "var(--paper)",
+        padding: "clamp(80px,10vw,140px) 0",
+        position: "relative",
+      }}
     >
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(to right, transparent, var(--color-gold)20, transparent)" }}
-      />
+      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)" }}>
+        {/* Section head */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1.4fr",
+          gap: 48,
+          marginBottom: "clamp(40px,6vw,72px)",
+          alignItems: "end",
+        }} className="svc-head-grid">
+          <div>
+            <span className="eyebrow on-dark"><span className="mono">Serviços</span></span>
+            <h2 style={{
+              fontFamily: "var(--serif)",
+              fontSize: "clamp(38px,5.2vw,64px)",
+              lineHeight: 1.02,
+              marginTop: 20,
+              color: "var(--paper)",
+            }}>
+              Tudo o que sua empresa<br />
+              precisa <em className="italic-gold">em um só lugar</em>.
+            </h2>
+          </div>
+          <p style={{ fontSize: 17, color: "#b8b0a3", maxWidth: "52ch", margin: 0, lineHeight: 1.6 }}>
+            Da abertura à consultoria estratégica, passando por fiscal, departamento pessoal e BPO financeiro.
+            Você concentra operações — e ganha tempo para o que realmente importa: fazer o negócio crescer.
+          </p>
+        </div>
 
-      <div className="max-w-7xl mx-auto px-5 md:px-8">
-        <AnimatedSection className="text-center mb-16 md:mb-20">
-          <span
-            className="text-xs tracking-[0.4em] uppercase mb-4 block"
-            style={{ color: "var(--text-accent)" }}
-          >
-            O que fazemos
-          </span>
-          <h2
-            className="text-3xl md:text-4xl font-light mb-4"
-            style={{ color: "var(--text-primary)" }}
-          >
-            Serviços <span className="font-semibold">Especializados</span>
-          </h2>
-          <div className="w-16 h-[1px] bg-gold mx-auto" />
-        </AnimatedSection>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {services.map((service, i) => (
-            <AnimatedSection key={service.title} delay={i * 0.1}>
-              <motion.div
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.3 }}
-                className="group p-8 md:p-10 border transition-all duration-500 relative overflow-hidden"
+        {/* Grid */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%,480px), 1fr))",
+          gap: 1,
+          background: "rgba(255,255,255,0.08)",
+          border: "1px solid rgba(255,255,255,0.08)",
+        }}>
+          {SERVICES.map((s, i) => {
+            const isOpen = openKey === s.key;
+            return (
+              <article
+                key={s.key}
+                onClick={() => setOpenKey(isOpen ? null : s.key)}
                 style={{
-                  background: "var(--bg-card)",
-                  borderColor: "var(--border-subtle)",
-                  boxShadow: "var(--shadow-card)",
+                  position: "relative",
+                  padding: "32px 32px 28px",
+                  background: s.featured
+                    ? `linear-gradient(180deg,rgba(201,169,97,${isOpen ? 0.12 : 0.08}),rgba(201,169,97,${isOpen ? 0.04 : 0.02}))`
+                    : isOpen ? "var(--ink-2)" : "var(--ink)",
+                  cursor: "pointer",
+                  transition: "background .3s",
+                }}
+                onMouseEnter={e => {
+                  if (!s.featured) (e.currentTarget as HTMLElement).style.background = "var(--ink-2)";
+                }}
+                onMouseLeave={e => {
+                  if (!s.featured) (e.currentTarget as HTMLElement).style.background = isOpen ? "var(--ink-2)" : "var(--ink)";
                 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[rgba(201,168,76,0.05)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-gold to-gold-light scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                <div className="relative z-10">
-                  <div className="mb-6" style={{ color: "var(--text-accent)" }}>
-                    <motion.div whileHover={{ rotate: [0, -10, 10, 0] }} transition={{ duration: 0.5 }}>
-                      {service.icon}
-                    </motion.div>
+                {/* Card head */}
+                <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 16, marginBottom: 24 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", flex: 1, minWidth: 0 }}>
+                    <span className="mono" style={{ fontSize: 11, letterSpacing: "0.18em", color: "var(--gold)" }}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span style={{
+                      fontSize: 11,
+                      letterSpacing: "0.12em",
+                      textTransform: "uppercase",
+                      color: "#8f887c",
+                      padding: "4px 10px",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                      borderRadius: 999,
+                      fontFamily: "var(--mono)",
+                    }}>
+                      {s.tag}
+                    </span>
+                    {s.featured && (
+                      <span className="mono" style={{
+                        fontSize: 10,
+                        letterSpacing: "0.18em",
+                        textTransform: "uppercase",
+                        color: "var(--gold)",
+                        padding: "5px 10px",
+                        border: "1px solid var(--gold)",
+                        borderRadius: 999,
+                        background: "rgba(0,0,0,0.3)",
+                        whiteSpace: "nowrap",
+                      }}>
+                        Mais procurado
+                      </span>
+                    )}
                   </div>
-                  <h3
-                    className="text-lg font-semibold mb-3 tracking-wide"
-                    style={{ color: "var(--text-primary)" }}
+                  <button
+                    aria-label="Toggle"
+                    style={{
+                      width: 34,
+                      height: 34,
+                      borderRadius: 999,
+                      border: "1px solid rgba(255,255,255,0.15)",
+                      color: isOpen ? "var(--gold)" : "var(--paper)",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      transition: "border-color .2s, color .2s",
+                      flexShrink: 0,
+                    }}
                   >
-                    {service.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                    {service.description}
-                  </p>
+                    {isOpen ? <MinusIcon /> : <PlusIcon />}
+                  </button>
                 </div>
-              </motion.div>
-            </AnimatedSection>
-          ))}
+
+                <h3 style={{
+                  fontFamily: "var(--serif)",
+                  fontSize: "clamp(26px,2.6vw,34px)",
+                  lineHeight: 1.08,
+                  marginBottom: 10,
+                  maxWidth: "22ch",
+                  color: "var(--paper)",
+                }}>
+                  {s.title}
+                </h3>
+                <p style={{ fontSize: 15, color: "#b8b0a3", margin: 0, lineHeight: 1.55, maxWidth: "48ch" }}>
+                  {s.summary}
+                </p>
+
+                {/* Expandable details */}
+                <div style={{
+                  display: "grid",
+                  gridTemplateRows: isOpen ? "1fr" : "0fr",
+                  transition: "grid-template-rows .45s ease, margin-top .3s ease, opacity .3s ease",
+                  opacity: isOpen ? 1 : 0,
+                  marginTop: isOpen ? 24 : 0,
+                }}>
+                  <div style={{ overflow: "hidden", minHeight: 0 }}>
+                    <ul style={{ listStyle: "none", padding: 0, margin: "0 0 20px", display: "grid", gap: 10 }}>
+                      {s.bullets.map((b) => (
+                        <li key={b} style={{
+                          display: "flex",
+                          alignItems: "flex-start",
+                          gap: 10,
+                          fontSize: 14,
+                          color: "#d5cfc3",
+                          paddingTop: 10,
+                          borderTop: "1px solid rgba(255,255,255,0.06)",
+                        }}>
+                          <CheckIcon />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <a
+                      href={waUrl(`Olá! Tenho interesse no serviço de ${s.title}. Podem me passar mais detalhes?`)}
+                      target="_blank"
+                      rel="noopener"
+                      onClick={(e) => e.stopPropagation()}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 8,
+                        fontSize: 13,
+                        color: "var(--gold)",
+                        padding: "10px 16px",
+                        border: "1px solid rgba(201,169,97,0.35)",
+                        borderRadius: 999,
+                        transition: "background .2s, border-color .2s, color .2s",
+                      }}
+                      onMouseEnter={e => {
+                        (e.currentTarget as HTMLElement).style.background = "var(--gold)";
+                        (e.currentTarget as HTMLElement).style.color = "var(--ink)";
+                        (e.currentTarget as HTMLElement).style.borderColor = "var(--gold)";
+                      }}
+                      onMouseLeave={e => {
+                        (e.currentTarget as HTMLElement).style.background = "transparent";
+                        (e.currentTarget as HTMLElement).style.color = "var(--gold)";
+                        (e.currentTarget as HTMLElement).style.borderColor = "rgba(201,169,97,0.35)";
+                      }}
+                    >
+                      Consultar sobre {s.title.toLowerCase()}
+                      <ArrowIcon />
+                    </a>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 820px) {
+          .svc-head-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+        }
+      `}</style>
     </section>
+  );
+}
+
+function PlusIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 16, height: 16 }}>
+      <path d="M12 5v14M5 12h14" strokeLinecap="round"/>
+    </svg>
+  );
+}
+function MinusIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 16, height: 16 }}>
+      <path d="M5 12h14" strokeLinecap="round"/>
+    </svg>
+  );
+}
+function CheckIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 14, height: 14, color: "var(--gold)", marginTop: 4, flexShrink: 0 }}>
+      <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+function ArrowIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 14, height: 14 }}>
+      <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
   );
 }
