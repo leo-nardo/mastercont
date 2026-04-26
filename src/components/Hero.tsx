@@ -36,16 +36,12 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Trust bar */}
-          <div className="hero-trust">
-            <div className="ht-item">
-              <div className="ht-num">3</div>
-              <div className="ht-lbl">sócios-<br />fundadores</div>
-            </div>
-            <div className="ht-div" />
-            <div className="ht-item">
-              <div className="ht-num">100<span className="ht-plus">%</span></div>
-              <div className="ht-lbl">atendimento<br />consultivo</div>
+          {/* Promise strip */}
+          <div className="hero-promise">
+            <div className="hero-promise-pct">100%</div>
+            <div className="hero-promise-body">
+              <div className="hero-promise-title">Atendimento consultivo</div>
+              <div className="hero-promise-sub">Contato direto com contadores — sem robôs, sem formulários</div>
             </div>
           </div>
         </div>
@@ -109,22 +105,30 @@ export default function Hero() {
         .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 48px; }
         .hero-cta-primary { padding: 14px 22px; }
 
-        /* Trust bar */
-        .hero-trust {
-          display: flex; align-items: center;
-          gap: clamp(20px,3vw,40px);
+        /* Promise strip */
+        .hero-promise {
+          display: flex; align-items: center; gap: 20px;
           padding-top: 24px;
           border-top: 1px solid rgba(255,255,255,.08);
         }
-        .ht-item { display: flex; flex-direction: column; gap: 4px; }
-        .ht-num {
+        .hero-promise-pct {
           font-family: var(--serif);
-          font-size: clamp(28px, 4vw, 52px);
-          line-height: 1; color: var(--paper); letter-spacing: -.02em;
+          font-size: clamp(40px, 5vw, 60px);
+          line-height: 1; color: var(--gold);
+          letter-spacing: -.02em; flex-shrink: 0;
         }
-        .ht-plus { color: var(--gold); font-size: .7em; vertical-align: super; margin-left: 2px; }
-        .ht-lbl { font-size: 11px; color: #8f887c; line-height: 1.35; }
-        .ht-div { width: 1px; align-self: stretch; background: rgba(255,255,255,.1); }
+        .hero-promise-body {
+          display: flex; flex-direction: column; gap: 4px;
+          border-left: 1px solid rgba(255,255,255,.1);
+          padding-left: 20px;
+        }
+        .hero-promise-title {
+          font-size: 14px; color: var(--paper); font-weight: 500;
+          letter-spacing: .01em;
+        }
+        .hero-promise-sub {
+          font-size: 12px; color: #8f887c; line-height: 1.45;
+        }
 
         /* Photo */
         .hero-media { position: relative; }
@@ -188,9 +192,7 @@ export default function Hero() {
             width: 100%; justify-content: center;
             border-radius: 999px;
           }
-          .hero-trust { gap: 14px; }
-          .ht-num { font-size: clamp(24px, 7vw, 36px); }
-          .ht-lbl { font-size: 10px; }
+          .hero-promise-sub { font-size: 11px; }
         }
       `}</style>
     </section>
