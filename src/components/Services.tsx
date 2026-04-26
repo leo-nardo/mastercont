@@ -41,13 +41,11 @@ export default function Services() {
     <section id="servicos" className="svc-section">
       <div className="svc-container">
         <div className="svc-head">
-          <div>
-            <span className="eyebrow on-dark"><span className="mono">Serviços</span></span>
-            <h2 className="svc-h2">
-              Tudo o que sua empresa<br />
-              precisa <em className="italic-gold">em um só lugar</em>.
-            </h2>
-          </div>
+          <span className="eyebrow on-dark"><span className="mono">Serviços</span></span>
+          <h2 className="svc-h2">
+            Tudo o que sua empresa<br />
+            precisa <em className="italic-gold">em um só lugar</em>.
+          </h2>
           <p className="svc-lead">
             Da abertura à consultoria estratégica, passando por fiscal, departamento pessoal e BPO financeiro.
             Você concentra operações — e ganha tempo para o que realmente importa.
@@ -111,15 +109,15 @@ export default function Services() {
           padding: 0 clamp(20px,4vw,48px);
         }
         .svc-head {
-          display: grid; grid-template-columns: 1fr 1.4fr;
-          gap: 48px; margin-bottom: clamp(36px,6vw,72px); align-items: end;
+          text-align: center;
+          margin-bottom: clamp(40px,6vw,80px);
         }
         .svc-h2 {
           font-family: var(--serif);
-          font-size: clamp(34px,5vw,64px);
+          font-size: clamp(36px,5vw,68px);
           line-height: 1.02; margin-top: 20px; color: var(--paper);
         }
-        .svc-lead { font-size: 16px; color: #b8b0a3; max-width: 52ch; margin: 0; line-height: 1.6; }
+        .svc-lead { font-size: 16px; color: #b8b0a3; max-width: 56ch; margin: 20px auto 0; line-height: 1.6; }
 
         .svc-grid {
           display: grid; grid-template-columns: repeat(2, 1fr);
@@ -204,9 +202,6 @@ export default function Services() {
           background: var(--gold); color: var(--ink); border-color: var(--gold);
         }
 
-        @media (max-width: 820px) {
-          .svc-head { grid-template-columns: 1fr; gap: 16px; }
-        }
         @media (max-width: 640px) {
           .svc-grid { grid-template-columns: 1fr; }
           .svc-card { padding: 22px 20px 18px; }
