@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-
 const items = [
   {
     num: "01",
@@ -27,90 +25,99 @@ const items = [
 
 export default function Differentiators() {
   return (
-    <section
-      id="diferenciais"
-      style={{
-        background: "var(--paper)",
-        padding: "clamp(80px,10vw,140px) 0",
-        position: "relative",
-      }}
-    >
-      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)" }}>
+    <section id="diferenciais" className="diff-section">
+      <div className="diff-container">
         {/* Section head */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1.4fr",
-          gap: 48,
-          marginBottom: "clamp(40px,6vw,72px)",
-          alignItems: "end",
-        }} className="section-head-grid">
+        <div className="diff-head">
           <div>
             <span className="eyebrow"><span className="mono">Por que Mastercont</span></span>
-            <h2 style={{
-              fontFamily: "var(--serif)",
-              fontSize: "clamp(38px,5.2vw,64px)",
-              lineHeight: 1.02,
-              marginTop: 20,
-              color: "var(--ink)",
-            }}>
+            <h2 className="diff-h2">
               Contabilidade<br />
               <span className="italic-gold">que empurra</span><br />
               o seu negócio.
             </h2>
           </div>
-          <p style={{ fontSize: 17, color: "var(--muted)", maxWidth: "52ch", margin: 0, lineHeight: 1.6 }}>
+          <p className="diff-lead">
             Cumprir obrigação fiscal é o mínimo. Nosso trabalho é usar a contabilidade
             como ferramenta estratégica — para você pagar menos impostos quando for legal,
             recuperar o que foi pago a mais, e tomar decisões com dados na mão.
           </p>
         </div>
 
-        {/* Grid */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-          gap: 0,
-          borderTop: "1px solid var(--line-light)",
-          borderLeft: "1px solid var(--line-light)",
-        }}>
+        {/* Cards grid */}
+        <div className="diff-grid">
           {items.map((it) => (
-            <article
-              key={it.num}
-              style={{
-                padding: "36px 28px 40px",
-                borderRight: "1px solid var(--line-light)",
-                borderBottom: "1px solid var(--line-light)",
-                background: "var(--paper)",
-                transition: "background .3s",
-                position: "relative",
-              }}
-              onMouseEnter={e => (e.currentTarget.style.background = "var(--paper-2)")}
-              onMouseLeave={e => (e.currentTarget.style.background = "var(--paper)")}
-            >
-              <div className="mono" style={{ fontSize: 11, letterSpacing: "0.2em", color: "var(--gold-deep)", marginBottom: 32 }}>
-                {it.num}
-              </div>
-              <h3 style={{
-                fontFamily: "var(--serif)",
-                fontSize: 24,
-                lineHeight: 1.15,
-                marginBottom: 12,
-                maxWidth: "14ch",
-                color: "var(--ink)",
-              }}>
-                {it.title}
-              </h3>
-              <p style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.55, margin: 0 }}>
-                {it.body}
-              </p>
+            <article key={it.num} className="diff-card">
+              <div className="mono diff-num">{it.num}</div>
+              <h3 className="diff-title">{it.title}</h3>
+              <p className="diff-body">{it.body}</p>
             </article>
           ))}
         </div>
       </div>
 
       <style>{`
+        .diff-section {
+          background: var(--paper);
+          padding: clamp(64px,9vw,140px) 0;
+        }
+        .diff-container {
+          max-width: 1240px; margin: 0 auto;
+          padding: 0 clamp(20px,4vw,48px);
+        }
+        .diff-head {
+          display: grid;
+          grid-template-columns: 1fr 1.4fr;
+          gap: 48px;
+          margin-bottom: clamp(36px,6vw,72px);
+          align-items: end;
+        }
+        .diff-h2 {
+          font-family: var(--serif);
+          font-size: clamp(34px,5vw,64px);
+          line-height: 1.02; margin-top: 20px; color: var(--ink);
+        }
+        .diff-lead {
+          font-size: 16px; color: var(--muted);
+          max-width: 52ch; margin: 0; line-height: 1.6;
+        }
+        .diff-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 0;
+          border-top: 1px solid var(--line-light);
+          border-left: 1px solid var(--line-light);
+        }
+        .diff-card {
+          padding: 32px 24px 36px;
+          border-right: 1px solid var(--line-light);
+          border-bottom: 1px solid var(--line-light);
+          background: var(--paper);
+          transition: background .3s;
+        }
+        .diff-card:hover { background: var(--paper-2); }
+        .diff-num {
+          font-size: 11px; letter-spacing: .2em;
+          color: var(--gold-deep); margin-bottom: 28px;
+        }
+        .diff-title {
+          font-family: var(--serif); font-size: 22px;
+          line-height: 1.15; margin-bottom: 10px;
+          color: var(--ink); max-width: 14ch;
+        }
+        .diff-body {
+          font-size: 14px; color: var(--muted); line-height: 1.55; margin: 0;
+        }
+
         @media (max-width: 820px) {
-          .section-head-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .diff-head { grid-template-columns: 1fr; gap: 16px; }
+        }
+        @media (max-width: 900px) {
+          .diff-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+          .diff-card { padding: 24px 18px 28px; }
+          .diff-title { font-size: 19px; }
         }
       `}</style>
     </section>

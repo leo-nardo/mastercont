@@ -4,32 +4,24 @@ const WA_LINK = "https://wa.me/556332150954?text=Ol%C3%A1!%20Vim%20pelo%20site%2
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#050505", color: "var(--paper)", padding: "64px 0 28px" }}>
-      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 clamp(20px,4vw,48px)" }}>
-        {/* Top */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "1.2fr 1.8fr",
-          gap: 48,
-          paddingBottom: 48,
-          borderBottom: "1px solid rgba(255,255,255,0.08)",
-        }} className="footer-top-grid">
-          {/* Brand */}
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+    <footer className="footer-root">
+      <div className="footer-container">
+        {/* Top grid: brand + nav columns */}
+        <div className="footer-top-grid">
+          <div className="footer-brand">
+            <div className="footer-logo">
               <MasterMark />
-              <span style={{ fontFamily: "var(--serif)", fontSize: 22, color: "var(--paper)" }}>Mastercont</span>
+              <span className="footer-logo-name">Mastercont</span>
             </div>
-            <p style={{ marginTop: 14, fontSize: 13, color: "#8f887c", maxWidth: "34ch", lineHeight: 1.55 }}>
+            <p className="footer-tagline">
               Contabilidade consultiva que transforma números em decisões estratégicas.
             </p>
           </div>
 
-          {/* Cols */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }}>
+          <div className="footer-nav-cols">
             <div>
-              <div className="mono" style={{ fontSize: 10, letterSpacing: "0.22em", color: "#6a645b", marginBottom: 16 }}>NAVEGAÇÃO</div>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+              <div className="mono footer-col-label">NAVEGAÇÃO</div>
+              <ul className="footer-links">
                 {[
                   ["Serviços", "#servicos"],
                   ["Recuperação tributária", "#recuperacao"],
@@ -38,22 +30,15 @@ export default function Footer() {
                   ["FAQ", "#faq"],
                 ].map(([label, href]) => (
                   <li key={href}>
-                    <a
-                      href={href}
-                      style={{ fontSize: 14, color: "#b8b0a3", transition: "color .2s" }}
-                      onMouseEnter={e => (e.currentTarget.style.color = "var(--gold)")}
-                      onMouseLeave={e => (e.currentTarget.style.color = "#b8b0a3")}
-                    >
-                      {label}
-                    </a>
+                    <a href={href} className="footer-link">{label}</a>
                   </li>
                 ))}
               </ul>
             </div>
 
             <div>
-              <div className="mono" style={{ fontSize: 10, letterSpacing: "0.22em", color: "#6a645b", marginBottom: 16 }}>CONTATO</div>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+              <div className="mono footer-col-label">CONTATO</div>
+              <ul className="footer-links">
                 {[
                   ["(63) 3215-0954", "tel:+556332150954"],
                   ["WhatsApp", WA_LINK],
@@ -65,9 +50,7 @@ export default function Footer() {
                       href={href}
                       target={href.startsWith("http") ? "_blank" : undefined}
                       rel={href.startsWith("http") ? "noopener" : undefined}
-                      style={{ fontSize: 14, color: "#b8b0a3", transition: "color .2s" }}
-                      onMouseEnter={e => (e.currentTarget.style.color = "var(--gold)")}
-                      onMouseLeave={e => (e.currentTarget.style.color = "#b8b0a3")}
+                      className="footer-link"
                     >
                       {label}
                     </a>
@@ -78,29 +61,68 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom */}
-        <div style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: 20,
-          paddingTop: 28,
-          flexWrap: "wrap",
-        }}>
-          <div className="mono" style={{ display: "flex", gap: 12, fontSize: 11, color: "#6a645b", letterSpacing: "0.12em", alignItems: "center" }}>
+        {/* Bottom bar */}
+        <div className="footer-bottom">
+          <div className="mono footer-creds">
             <span>CRC/TO 000860/O</span>
-            <span style={{ color: "var(--gold)" }}>·</span>
+            <span className="footer-dot">·</span>
             <span>CNPJ 47.321.741/0001-38</span>
           </div>
-          <div className="mono" style={{ fontSize: 11, color: "#6a645b", letterSpacing: "0.1em" }}>
+          <div className="mono footer-copy">
             © {new Date().getFullYear()} Mastercont Contadores Associados
           </div>
         </div>
       </div>
 
       <style>{`
+        .footer-root {
+          background: #050505; color: var(--paper);
+          padding: 64px 0 28px;
+        }
+        .footer-container {
+          max-width: 1240px; margin: 0 auto;
+          padding: 0 clamp(20px,4vw,48px);
+        }
+        .footer-top-grid {
+          display: grid; grid-template-columns: 1.2fr 1.8fr;
+          gap: 48px; padding-bottom: 48px;
+          border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+        .footer-logo { display: flex; align-items: center; gap: 10px; }
+        .footer-logo-name { font-family: var(--serif); font-size: 22px; color: var(--paper); }
+        .footer-tagline {
+          margin-top: 14px; font-size: 13px; color: #8f887c;
+          max-width: 34ch; line-height: 1.55;
+        }
+        .footer-nav-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .footer-col-label {
+          font-size: 10px; letter-spacing: .22em; color: #6a645b; margin-bottom: 16px;
+        }
+        .footer-links {
+          list-style: none; padding: 0; margin: 0;
+          display: flex; flex-direction: column; gap: 10px;
+        }
+        .footer-link { font-size: 14px; color: #b8b0a3; transition: color .2s; }
+        .footer-link:hover { color: var(--gold); }
+        .footer-bottom {
+          display: flex; justify-content: space-between; align-items: center;
+          gap: 16px; padding-top: 28px; flex-wrap: wrap;
+        }
+        .footer-creds {
+          display: flex; gap: 12px; font-size: 11px;
+          color: #6a645b; letter-spacing: .12em; align-items: center; flex-wrap: wrap;
+        }
+        .footer-dot { color: var(--gold); }
+        .footer-copy { font-size: 11px; color: #6a645b; letter-spacing: .1em; }
+
         @media (max-width: 720px) {
-          .footer-top-grid { grid-template-columns: 1fr !important; }
+          .footer-top-grid { grid-template-columns: 1fr; gap: 36px; }
+        }
+        @media (max-width: 480px) {
+          .footer-root { padding: 48px 0 24px; }
+          .footer-nav-cols { gap: 28px; }
+          .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+          .footer-link { font-size: 13px; }
         }
       `}</style>
     </footer>
