@@ -1,5 +1,8 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { AnimateIn, StaggerIn, fadeUp } from "./AnimateIn";
+
 const testimonials = [
   {
     name: "Wanessa Araujo Fonseca",
@@ -22,7 +25,7 @@ export default function Testimonials() {
   return (
     <section id="depoimentos" className="testi-section">
       <div className="testi-container">
-        <div className="testi-head">
+        <AnimateIn className="testi-head">
           <span className="eyebrow"><span className="mono">Depoimentos</span></span>
           <h2 className="testi-h2">
             Quem trabalha com a gente,<br />
@@ -32,11 +35,11 @@ export default function Testimonials() {
             Atendemos empresas de diferentes portes e setores em Palmas e em todo o Brasil.
             Leia o que alguns dos nossos clientes dizem sobre trabalhar com a Mastercont.
           </p>
-        </div>
+        </AnimateIn>
 
-        <div className="testi-grid">
+        <StaggerIn className="testi-grid">
           {testimonials.map((t) => (
-            <figure key={t.name} className="testi-card">
+            <motion.figure key={t.name} className="testi-card" variants={fadeUp}>
               <svg viewBox="0 0 32 32" fill="currentColor" className="testi-quote">
                 <path d="M10 8c-4 0-7 3-7 7v9h9v-9H6c0-2 1-4 4-4V8zm13 0c-4 0-7 3-7 7v9h9v-9h-6c0-2 1-4 4-4V8z"/>
               </svg>
@@ -52,9 +55,9 @@ export default function Testimonials() {
                 <div className="testi-name">{t.name}</div>
                 <div className="mono testi-role">{t.role}</div>
               </figcaption>
-            </figure>
+            </motion.figure>
           ))}
-        </div>
+        </StaggerIn>
       </div>
 
       <style>{`

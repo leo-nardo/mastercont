@@ -1,5 +1,8 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { AnimateIn, StaggerIn, fadeUp } from "./AnimateIn";
+
 const socios = [
   { name: "Yuri Morais de Sales", role: "Sócio-Fundador", img: "/images/yuri.webp" },
   { name: "Paulo Henrique Sousa Santos", role: "Sócio-Fundador", img: "/images/paulo.webp" },
@@ -10,8 +13,7 @@ export default function Founders() {
   return (
     <section id="sobre" className="about-section">
       <div className="about-container">
-        {/* About text — full width */}
-        <div className="about-text-wrap">
+        <AnimateIn className="about-text-wrap">
           <div className="about-text-col">
             <span className="eyebrow on-dark"><span className="mono">Sobre a Mastercont</span></span>
             <h2 className="about-h2">
@@ -38,17 +40,17 @@ export default function Founders() {
               <div style={{ fontFamily: "var(--serif)", fontSize: 20, color: "var(--paper)", letterSpacing: "-.01em", marginTop: 4 }}>Jul · 2022</div>
             </div>
           </div>
-        </div>
+        </AnimateIn>
 
-        {/* Founders grid */}
-        <div className="socios-header">
+        <AnimateIn delay={0.1} className="socios-header">
           <span className="mono" style={{ fontSize: 11, letterSpacing: ".18em", color: "#8f887c" }}>
             SÓCIOS-FUNDADORES
           </span>
-        </div>
-        <div className="socios-grid">
+        </AnimateIn>
+
+        <StaggerIn className="socios-grid">
           {socios.map((s) => (
-            <article key={s.name} className="socio-card">
+            <motion.article key={s.name} className="socio-card" variants={fadeUp}>
               <div
                 className="socio-photo"
                 onMouseEnter={e => {
@@ -69,9 +71,9 @@ export default function Founders() {
                 </div>
                 <h3 className="socio-name">{s.name}</h3>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </StaggerIn>
       </div>
 
       <style>{`

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimateIn } from "./AnimateIn";
 
 const WA_NUMBER = "556332150954";
 function waUrl(text: string) {
@@ -40,7 +41,7 @@ export default function Services() {
   return (
     <section id="servicos" className="svc-section">
       <div className="svc-container">
-        <div className="svc-head">
+        <AnimateIn className="svc-head">
           <span className="eyebrow on-dark"><span className="mono">Serviços</span></span>
           <h2 className="svc-h2">
             Tudo o que sua empresa<br />
@@ -50,53 +51,55 @@ export default function Services() {
             Da abertura à consultoria estratégica, passando por fiscal, departamento pessoal e BPO financeiro.
             Você concentra operações — e ganha tempo para o que realmente importa.
           </p>
-        </div>
+        </AnimateIn>
 
-        <div className="svc-grid">
-          {SERVICES.map((s, i) => {
-            const isOpen = openKey === s.key;
-            return (
-              <article
-                key={s.key}
-                className={`svc-card ${s.featured ? "featured" : ""} ${isOpen ? "open" : ""}`}
-                onClick={() => setOpenKey(isOpen ? null : s.key)}
-              >
-                <div className="svc-card-head">
-                  <div className="svc-meta">
-                    <span className="mono svc-num">{String(i + 1).padStart(2, "0")}</span>
-                    <span className="mono svc-tag-pill">{s.tag}</span>
-                    {s.featured && <span className="mono svc-badge">Mais procurado</span>}
+        <AnimateIn delay={0.1} className="svc-grid-wrap">
+          <div className="svc-grid">
+            {SERVICES.map((s, i) => {
+              const isOpen = openKey === s.key;
+              return (
+                <article
+                  key={s.key}
+                  className={`svc-card ${s.featured ? "featured" : ""} ${isOpen ? "open" : ""}`}
+                  onClick={() => setOpenKey(isOpen ? null : s.key)}
+                >
+                  <div className="svc-card-head">
+                    <div className="svc-meta">
+                      <span className="mono svc-num">{String(i + 1).padStart(2, "0")}</span>
+                      <span className="mono svc-tag-pill">{s.tag}</span>
+                      {s.featured && <span className="mono svc-badge">Mais procurado</span>}
+                    </div>
+                    <button className="svc-toggle" aria-label="Expandir">
+                      {isOpen ? <MinusIcon /> : <PlusIcon />}
+                    </button>
                   </div>
-                  <button className="svc-toggle" aria-label="Expandir">
-                    {isOpen ? <MinusIcon /> : <PlusIcon />}
-                  </button>
-                </div>
 
-                <h3 className="svc-title">{s.title}</h3>
-                <p className="svc-summary">{s.summary}</p>
+                  <h3 className="svc-title">{s.title}</h3>
+                  <p className="svc-summary">{s.summary}</p>
 
-                <div className="svc-details" style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", opacity: isOpen ? 1 : 0, marginTop: isOpen ? 20 : 0 }}>
-                  <div className="svc-details-inner">
-                    <ul className="svc-bullets">
-                      {s.bullets.map((b) => (
-                        <li key={b}><CheckIcon /><span>{b}</span></li>
-                      ))}
-                    </ul>
-                    <a
-                      href={waUrl(`Olá! Tenho interesse no serviço de ${s.title}. Podem me passar mais detalhes?`)}
-                      target="_blank" rel="noopener"
-                      className="svc-cta-link"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      Consultar sobre {s.title.toLowerCase()}
-                      <ArrowIcon />
-                    </a>
+                  <div className="svc-details" style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", opacity: isOpen ? 1 : 0, marginTop: isOpen ? 20 : 0 }}>
+                    <div className="svc-details-inner">
+                      <ul className="svc-bullets">
+                        {s.bullets.map((b) => (
+                          <li key={b}><CheckIcon /><span>{b}</span></li>
+                        ))}
+                      </ul>
+                      <a
+                        href={waUrl(`Olá! Tenho interesse no serviço de ${s.title}. Podem me passar mais detalhes?`)}
+                        target="_blank" rel="noopener"
+                        className="svc-cta-link"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Consultar sobre {s.title.toLowerCase()}
+                        <ArrowIcon />
+                      </a>
+                    </div>
                   </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
+                </article>
+              );
+            })}
+          </div>
+        </AnimateIn>
       </div>
 
       <style>{`
@@ -160,7 +163,7 @@ export default function Services() {
           color: var(--paper); display: inline-flex;
           align-items: center; justify-content: center;
           transition: border-color .2s, color .2s; flex-shrink: 0;
-          min-width: 34px; /* touch target */
+          min-width: 34px;
         }
         .svc-card.open .svc-toggle { border-color: var(--gold); color: var(--gold); }
 

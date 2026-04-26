@@ -1,5 +1,8 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { AnimateIn, StaggerIn, fadeUp } from "./AnimateIn";
+
 const items = [
   {
     num: "01",
@@ -27,7 +30,7 @@ export default function Differentiators() {
   return (
     <section id="diferenciais" className="diff-section">
       <div className="diff-container">
-        <div className="diff-head">
+        <AnimateIn className="diff-head">
           <span className="eyebrow"><span className="mono">Por que Mastercont</span></span>
           <h2 className="diff-h2">
             Contabilidade<br />
@@ -39,17 +42,17 @@ export default function Differentiators() {
             como ferramenta estratégica — para você pagar menos impostos quando for legal,
             recuperar o que foi pago a mais, e tomar decisões com dados na mão.
           </p>
-        </div>
+        </AnimateIn>
 
-        <div className="diff-grid">
+        <StaggerIn className="diff-grid">
           {items.map((it) => (
-            <article key={it.num} className="diff-card">
+            <motion.article key={it.num} className="diff-card" variants={fadeUp}>
               <div className="mono diff-num">{it.num}</div>
               <h3 className="diff-title">{it.title}</h3>
               <p className="diff-body">{it.body}</p>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </StaggerIn>
       </div>
 
       <style>{`

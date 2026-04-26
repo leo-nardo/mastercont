@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const WA_NUMBER = "556332150954";
 const sectors = [
@@ -24,13 +27,21 @@ export default function RecoverySection() {
     `Olá! Simulei no site: faturamento R$ ${revenue.toLocaleString("pt-BR")}/mês por ${months} meses. Gostaria de um diagnóstico gratuito de recuperação tributária.`
   )}`;
 
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px 0px" });
+
   return (
     <section id="recuperacao" className="rec-section">
       <div className="rec-glow" aria-hidden="true" />
       <div className="rec-container">
-        <div className="rec-grid">
+        <div className="rec-grid" ref={ref}>
           {/* Copy */}
-          <div className="rec-copy">
+          <motion.div
+            className="rec-copy"
+            initial={{ opacity: 0, y: 28 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.65, ease: EASE }}
+          >
             <span className="eyebrow on-dark"><span className="mono">Recuperação Tributária</span></span>
             <h2 className="rec-h2">
               Sua empresa pode ter<br />
@@ -55,10 +66,15 @@ export default function RecoverySection() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Calculator */}
-          <aside className="rec-calc">
+          <motion.aside
+            className="rec-calc"
+            initial={{ opacity: 0, y: 28 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.65, ease: EASE, delay: 0.15 }}
+          >
             <div className="rec-calc-top" />
             <div style={{ marginBottom: 24 }}>
               <span className="mono" style={{ fontSize: 11, letterSpacing: ".18em", color: "var(--gold)" }}>SIMULADOR</span>
@@ -102,7 +118,7 @@ export default function RecoverySection() {
             <a href={waLink} target="_blank" rel="noopener" className="btn btn-gold rec-cta">
               <WAIcon /> Solicitar diagnóstico gratuito
             </a>
-          </aside>
+          </motion.aside>
         </div>
       </div>
 

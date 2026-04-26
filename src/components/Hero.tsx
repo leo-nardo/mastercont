@@ -1,6 +1,9 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 const WA_LINK = "https://wa.me/556332150954?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Mastercont%20e%20gostaria%20de%20falar%20com%20voc%C3%AAs.";
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export default function Hero() {
   return (
@@ -10,22 +13,42 @@ export default function Hero() {
       <div className="hero-inner">
         {/* Left: copy */}
         <div className="hero-copy">
-          <span className="eyebrow on-dark">
+          <motion.span
+            className="eyebrow on-dark"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: EASE, delay: 0.1 }}
+          >
             <span className="mono">Contabilidade consultiva · Palmas / TO</span>
-          </span>
+          </motion.span>
 
-          <h1 className="hero-title">
+          <motion.h1
+            className="hero-title"
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, ease: EASE, delay: 0.2 }}
+          >
             Números que <em className="italic-gold">decidem</em>.<br />
             Estratégia que <em className="italic-gold">cresce</em>.
-          </h1>
+          </motion.h1>
 
-          <p className="hero-lead">
+          <motion.p
+            className="hero-lead"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, ease: EASE, delay: 0.35 }}
+          >
             Unimos contabilidade, tecnologia e visão de negócio para transformar dados em
             decisões que reduzem custos, aumentam segurança e fazem a sua empresa crescer
             de forma sustentável.
-          </p>
+          </motion.p>
 
-          <div className="hero-ctas">
+          <motion.div
+            className="hero-ctas"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: EASE, delay: 0.48 }}
+          >
             <a href={WA_LINK} target="_blank" rel="noopener" className="btn btn-gold hero-cta-primary">
               <WAIcon />
               Falar com um contador agora
@@ -34,20 +57,29 @@ export default function Hero() {
             <a href="#servicos" className="btn btn-ghost on-dark hero-cta-secondary">
               Conhecer serviços
             </a>
-          </div>
+          </motion.div>
 
-          {/* Promise strip */}
-          <div className="hero-promise">
+          <motion.div
+            className="hero-promise"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.65 }}
+          >
             <div className="hero-promise-pct">100%</div>
             <div className="hero-promise-body">
               <div className="hero-promise-title">Atendimento consultivo</div>
               <div className="hero-promise-sub">Contato direto com contadores — sem robôs, sem formulários</div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Right: photo */}
-        <div className="hero-media">
+        <motion.div
+          className="hero-media"
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.85, ease: EASE, delay: 0.25 }}
+        >
           <div className="hero-photo">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/images/team-together.webp" alt="Equipe Mastercont" />
@@ -61,7 +93,7 @@ export default function Hero() {
             Yuri · Jaques · Paulo
             <span className="hero-caption-role"> — sócios-fundadores</span>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <style>{`

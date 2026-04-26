@@ -1,15 +1,27 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+
 const WA_LINK = "https://wa.me/556332150954?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Mastercont%20e%20gostaria%20de%20falar%20com%20voc%C3%AAs.";
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export default function Contact() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px 0px" });
+
   return (
     <section id="contato" className="contact-section">
       <div className="contact-glow" aria-hidden="true" />
       <div className="contact-container">
-        <div className="contact-grid">
+        <div className="contact-grid" ref={ref}>
           {/* Copy */}
-          <div className="contact-copy">
+          <motion.div
+            className="contact-copy"
+            initial={{ opacity: 0, y: 28 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.65, ease: EASE }}
+          >
             <span className="eyebrow on-dark"><span className="mono">Vamos conversar</span></span>
             <h2 className="contact-h2">
               Pronto para uma<br />
@@ -29,10 +41,15 @@ export default function Contact() {
                 <MailIcon /> Enviar e-mail
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Info card */}
-          <aside className="contact-info">
+          <motion.aside
+            className="contact-info"
+            initial={{ opacity: 0, y: 28 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.65, ease: EASE, delay: 0.15 }}
+          >
             <InfoRow icon={<PinIcon />} label="ENDEREÇO">
               Q. 206 Sul, Avenida LO 05, Lote 13<br />
               Salas 03, 05 e 06 — Plano Diretor Sul<br />
@@ -55,7 +72,7 @@ export default function Contact() {
               <div className="mono" style={{ fontSize: 10, letterSpacing: ".2em", color: "#8f887c" }}>ATENDIMENTO</div>
               <div style={{ marginTop: 6, color: "#d5cfc3", fontSize: 14 }}>Segunda a Sexta · 08h às 18h</div>
             </div>
-          </aside>
+          </motion.aside>
         </div>
       </div>
 

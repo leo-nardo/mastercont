@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimateIn } from "./AnimateIn";
 
 const FAQS = [
   { q: "Vocês atendem empresas fora de Palmas?",
@@ -23,7 +24,7 @@ export default function FAQ() {
   return (
     <section id="faq" className="faq-section">
       <div className="faq-container">
-        <div className="faq-head">
+        <AnimateIn className="faq-head">
           <span className="eyebrow"><span className="mono">Perguntas frequentes</span></span>
           <h2 className="faq-h2">
             Ainda tem<br />
@@ -33,9 +34,9 @@ export default function FAQ() {
             As perguntas que mais recebemos de empresários que estão avaliando trocar de contador
             ou iniciar um novo negócio. Se a sua não está aqui, chama no WhatsApp.
           </p>
-        </div>
+        </AnimateIn>
 
-        <div className="faq-list">
+        <AnimateIn delay={0.15} className="faq-list">
           {FAQS.map((f, i) => {
             const isOpen = open === i;
             return (
@@ -55,7 +56,7 @@ export default function FAQ() {
               </div>
             );
           })}
-        </div>
+        </AnimateIn>
       </div>
 
       <style>{`

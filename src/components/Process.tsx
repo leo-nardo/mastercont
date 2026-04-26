@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { AnimateIn, StaggerIn, fadeUp } from "./AnimateIn";
+
 const steps = [
   { n: "01", t: "Conversa inicial", d: "Você fala com um contador pelo WhatsApp ou em reunião. Entendemos seu negócio, porte e principais dores." },
   { n: "02", t: "Diagnóstico", d: "Analisamos sua situação fiscal, regime tributário e identificamos oportunidades — inclusive recuperação de créditos." },
@@ -9,7 +14,7 @@ export default function Process() {
   return (
     <section id="processo" className="proc-section">
       <div className="proc-container">
-        <div className="proc-head">
+        <AnimateIn className="proc-head">
           <span className="eyebrow"><span className="mono">Como funciona</span></span>
           <h2 className="proc-h2">
             Do primeiro contato<br />
@@ -20,12 +25,12 @@ export default function Process() {
             Sem burocracia desnecessária. Você fala com gente — não com formulários e respostas automáticas.
             Nossa meta é assumir sua contabilidade com segurança e no menor tempo possível.
           </p>
-        </div>
+        </AnimateIn>
 
         {/* Desktop: horizontal timeline */}
-        <div className="proc-track-h">
+        <StaggerIn className="proc-track-h">
           {steps.map((s, i) => (
-            <div key={s.n} className="proc-step-h">
+            <motion.div key={s.n} className="proc-step-h" variants={fadeUp}>
               <div className="proc-line-h">
                 <span className="proc-dot" />
                 {i < steps.length - 1 && <span className="proc-bar-h" />}
@@ -35,14 +40,14 @@ export default function Process() {
                 <h3 className="proc-title">{s.t}</h3>
                 <p className="proc-desc">{s.d}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </StaggerIn>
 
         {/* Mobile: vertical timeline */}
-        <div className="proc-track-v">
+        <StaggerIn className="proc-track-v">
           {steps.map((s, i) => (
-            <div key={s.n} className="proc-step-v">
+            <motion.div key={s.n} className="proc-step-v" variants={fadeUp}>
               <div className="proc-line-v">
                 <span className="proc-dot" />
                 {i < steps.length - 1 && <span className="proc-bar-v" />}
@@ -52,9 +57,9 @@ export default function Process() {
                 <h3 className="proc-title">{s.t}</h3>
                 <p className="proc-desc">{s.d}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </StaggerIn>
       </div>
 
       <style>{`
