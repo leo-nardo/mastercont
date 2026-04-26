@@ -27,16 +27,13 @@ export default function Differentiators() {
   return (
     <section id="diferenciais" className="diff-section">
       <div className="diff-container">
-        {/* Section head */}
         <div className="diff-head">
-          <div>
-            <span className="eyebrow"><span className="mono">Por que Mastercont</span></span>
-            <h2 className="diff-h2">
-              Contabilidade<br />
-              <span className="italic-gold">que empurra</span><br />
-              o seu negócio.
-            </h2>
-          </div>
+          <span className="eyebrow"><span className="mono">Por que Mastercont</span></span>
+          <h2 className="diff-h2">
+            Contabilidade<br />
+            <span className="italic-gold">que empurra</span><br />
+            o seu negócio.
+          </h2>
           <p className="diff-lead">
             Cumprir obrigação fiscal é o mínimo. Nosso trabalho é usar a contabilidade
             como ferramenta estratégica — para você pagar menos impostos quando for legal,
@@ -44,7 +41,6 @@ export default function Differentiators() {
           </p>
         </div>
 
-        {/* Cards grid */}
         <div className="diff-grid">
           {items.map((it) => (
             <article key={it.num} className="diff-card">
@@ -66,20 +62,17 @@ export default function Differentiators() {
           padding: 0 clamp(20px,4vw,48px);
         }
         .diff-head {
-          display: grid;
-          grid-template-columns: 1fr 1.4fr;
-          gap: 48px;
-          margin-bottom: clamp(36px,6vw,72px);
-          align-items: end;
+          text-align: center;
+          margin-bottom: clamp(40px,6vw,80px);
         }
         .diff-h2 {
           font-family: var(--serif);
-          font-size: clamp(34px,5vw,64px);
+          font-size: clamp(36px,5vw,68px);
           line-height: 1.02; margin-top: 20px; color: var(--ink);
         }
         .diff-lead {
           font-size: 16px; color: var(--muted);
-          max-width: 52ch; margin: 0; line-height: 1.6;
+          max-width: 56ch; margin: 20px auto 0; line-height: 1.6;
         }
         .diff-grid {
           display: grid;
@@ -109,9 +102,6 @@ export default function Differentiators() {
           font-size: 14px; color: var(--muted); line-height: 1.55; margin: 0;
         }
 
-        @media (max-width: 820px) {
-          .diff-head { grid-template-columns: 1fr; gap: 16px; }
-        }
         @media (max-width: 900px) {
           .diff-grid { grid-template-columns: repeat(2, 1fr); }
         }

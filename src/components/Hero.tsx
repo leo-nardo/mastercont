@@ -2,16 +2,9 @@
 
 const WA_LINK = "https://wa.me/556332150954?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Mastercont%20e%20gostaria%20de%20falar%20com%20voc%C3%AAs.";
 
-const marqueeItems = [
-  "Gestão Fiscal", "Planejamento Tributário", "Recuperação Tributária",
-  "BPO Financeiro", "Departamento Pessoal", "Abertura de Empresas",
-  "Certificado Digital", "Registro de Marcas",
-];
-
 export default function Hero() {
   return (
     <section id="top" className="hero-section">
-      {/* Grain overlay */}
       <div className="hero-grain" aria-hidden="true" />
 
       <div className="hero-inner">
@@ -46,11 +39,6 @@ export default function Hero() {
           {/* Trust bar */}
           <div className="hero-trust">
             <div className="ht-item">
-              <div className="ht-num">3<span className="ht-plus">+</span></div>
-              <div className="ht-lbl">anos em<br />Palmas — TO</div>
-            </div>
-            <div className="ht-div" />
-            <div className="ht-item">
               <div className="ht-num">3</div>
               <div className="ht-lbl">sócios-<br />fundadores</div>
             </div>
@@ -66,36 +54,17 @@ export default function Hero() {
         <div className="hero-media">
           <div className="hero-photo">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/team-together.jpeg"
-              alt="Equipe Mastercont"
-            />
+            <img src="/images/team-together.jpeg" alt="Equipe Mastercont" />
             <div className="hero-photo-overlay" />
             <div className="hero-photo-badge">
-              <span className="mono" style={{ fontSize: 10, letterSpacing: "0.18em", color: "var(--gold)" }}>CRC/TO</span>
-              <span style={{ fontFamily: "var(--serif)", fontSize: 22, color: "var(--paper)" }}>000860/O</span>
-              <span style={{ fontSize: 11, color: "#b8b0a3" }}>Conselho Regional de Contabilidade</span>
+              <span className="hero-badge-label mono">CRC/TO</span>
+              <span className="hero-badge-num">000860/O</span>
             </div>
           </div>
           <div className="hero-caption mono">
-            Yuri · Jaques · Paulo<br />
-            <span style={{ color: "var(--gold)" }}>— sócios-fundadores</span>
+            Yuri · Jaques · Paulo
+            <span className="hero-caption-role"> — sócios-fundadores</span>
           </div>
-        </div>
-      </div>
-
-      {/* Marquee strip */}
-      <div className="hero-marquee" aria-hidden="true">
-        <div className="hm-track">
-          {[0, 1, 2].map((i) => (
-            <div key={i} className="hm-group">
-              {marqueeItems.map((item, j) => (
-                <span key={j} className="hm-item">
-                  {item}<span className="hm-dot">◆</span>
-                </span>
-              ))}
-            </div>
-          ))}
         </div>
       </div>
 
@@ -116,7 +85,7 @@ export default function Hero() {
 
         .hero-inner {
           max-width: 1240px; margin: 0 auto;
-          padding: clamp(72px,10vw,140px) clamp(20px,4vw,48px) clamp(56px,7vw,100px);
+          padding: clamp(72px,10vw,140px) clamp(20px,4vw,48px) clamp(72px,10vw,120px);
           display: grid;
           grid-template-columns: 1.1fr 0.9fr;
           gap: clamp(32px,5vw,72px);
@@ -139,12 +108,11 @@ export default function Hero() {
 
         .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 48px; }
         .hero-cta-primary { padding: 14px 22px; }
-        .hero-cta-secondary {}
 
         /* Trust bar */
         .hero-trust {
           display: flex; align-items: center;
-          gap: clamp(16px,3vw,36px);
+          gap: clamp(20px,3vw,40px);
           padding-top: 24px;
           border-top: 1px solid rgba(255,255,255,.08);
         }
@@ -177,49 +145,42 @@ export default function Hero() {
         }
         .hero-photo-badge {
           position: absolute; left: 16px; bottom: 16px;
-          padding: 12px 16px;
-          background: rgba(10,10,10,.72);
+          padding: 10px 14px;
+          background: rgba(10,10,10,.75);
           backdrop-filter: blur(10px);
           border: 1px solid rgba(201,169,97,.28);
           border-radius: 2px;
-          display: flex; flex-direction: column; gap: 2px; z-index: 2;
+          display: flex; flex-direction: column; gap: 3px; z-index: 2;
         }
-        .hero-caption {
-          position: absolute; top: 14px; right: 14px;
-          font-size: 10px; text-align: right;
-          color: #b8b0a3; letter-spacing: .06em; line-height: 1.45; z-index: 2;
+        .hero-badge-label {
+          font-size: 10px; letter-spacing: .18em; color: var(--gold);
+        }
+        .hero-badge-num {
+          font-family: var(--serif); font-size: 22px; color: var(--paper); line-height: 1;
         }
 
-        /* Marquee */
-        .hero-marquee {
-          border-top: 1px solid rgba(255,255,255,.08);
-          border-bottom: 1px solid rgba(255,255,255,.08);
-          padding: 20px 0; overflow: hidden;
-          background: rgba(0,0,0,.25);
+        /* Caption below photo */
+        .hero-caption {
+          margin-top: 10px;
+          font-size: 11px; text-align: right;
+          color: #8f887c; letter-spacing: .06em; line-height: 1.45;
         }
-        .hm-track { display: flex; width: max-content; animation: marquee-scroll 45s linear infinite; }
-        .hm-track:hover { animation-play-state: paused; }
-        .hm-group { display: flex; align-items: center; gap: 0; }
-        .hm-item {
-          display: inline-flex; align-items: center; gap: 28px;
-          font-family: var(--serif);
-          font-size: clamp(18px, 2.2vw, 30px);
-          color: #7a746b; white-space: nowrap;
-          padding: 0 14px;
-          letter-spacing: -.01em;
-        }
-        .hm-dot { color: var(--gold); font-size: .45em; }
+        .hero-caption-role { color: var(--gold); }
 
         /* ── Mobile ── */
         @media (max-width: 860px) {
           .hero-inner {
             grid-template-columns: 1fr;
             padding-top: clamp(56px, 12vw, 80px);
-            padding-bottom: clamp(40px, 8vw, 64px);
+            padding-bottom: clamp(56px, 10vw, 80px);
           }
-          /* Photo comes after copy (DOM order is already correct) */
           .hero-photo { aspect-ratio: 4/3; max-height: 360px; }
           .hero-photo img { object-position: center 20%; }
+        }
+        @media (max-width: 540px) {
+          .hero-photo-badge { padding: 8px 11px; left: 12px; bottom: 12px; }
+          .hero-badge-label { font-size: 9px; }
+          .hero-badge-num { font-size: 16px; }
         }
         @media (max-width: 640px) {
           .hero-ctas { flex-direction: column; gap: 10px; }
@@ -227,7 +188,7 @@ export default function Hero() {
             width: 100%; justify-content: center;
             border-radius: 999px;
           }
-          .hero-trust { gap: 12px; }
+          .hero-trust { gap: 14px; }
           .ht-num { font-size: clamp(24px, 7vw, 36px); }
           .ht-lbl { font-size: 10px; }
         }

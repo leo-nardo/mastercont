@@ -24,13 +24,11 @@ export default function FAQ() {
     <section id="faq" className="faq-section">
       <div className="faq-container">
         <div className="faq-head">
-          <div>
-            <span className="eyebrow"><span className="mono">Perguntas frequentes</span></span>
-            <h2 className="faq-h2">
-              Ainda tem<br />
-              <span className="italic-gold">alguma dúvida?</span>
-            </h2>
-          </div>
+          <span className="eyebrow"><span className="mono">Perguntas frequentes</span></span>
+          <h2 className="faq-h2">
+            Ainda tem<br />
+            <span className="italic-gold">alguma dúvida?</span>
+          </h2>
           <p className="faq-lead">
             As perguntas que mais recebemos de empresários que estão avaliando trocar de contador
             ou iniciar um novo negócio. Se a sua não está aqui, chama no WhatsApp.
@@ -70,15 +68,18 @@ export default function FAQ() {
           padding: 0 clamp(20px,4vw,48px);
         }
         .faq-head {
-          display: grid; grid-template-columns: 1fr 1.4fr;
-          gap: 48px; margin-bottom: clamp(36px,6vw,72px); align-items: end;
+          text-align: center;
+          margin-bottom: clamp(40px,6vw,72px);
         }
         .faq-h2 {
           font-family: var(--serif);
-          font-size: clamp(34px,5vw,64px);
+          font-size: clamp(36px,5vw,68px);
           line-height: 1.02; margin-top: 20px; color: var(--ink);
         }
-        .faq-lead { font-size: 16px; color: var(--muted); max-width: 52ch; margin: 0; line-height: 1.6; }
+        .faq-lead {
+          font-size: 16px; color: var(--muted);
+          max-width: 56ch; margin: 20px auto 0; line-height: 1.6;
+        }
 
         .faq-list {
           max-width: 900px; margin: 0 auto;
@@ -116,9 +117,6 @@ export default function FAQ() {
           line-height: 1.65; max-width: 68ch;
         }
 
-        @media (max-width: 820px) {
-          .faq-head { grid-template-columns: 1fr; gap: 16px; }
-        }
         @media (max-width: 640px) {
           .faq-btn { padding: 18px 0; gap: 12px; }
           .faq-a-text { font-size: 14px; }

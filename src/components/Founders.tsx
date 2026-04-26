@@ -1,16 +1,16 @@
 "use client";
 
 const socios = [
-  { name: "Yuri Morais de Sales", role: "CEO & Sócio-Fundador", img: "/images/yuri.jpeg" },
-  { name: "Paulo Henrique Sousa Santos", role: "CEO & Sócio-Fundador", img: "/images/paulo.jpeg" },
-  { name: "Jaques Oliveira da Silva", role: "CEO & Sócio-Fundador", img: "/images/jaques.jpeg" },
+  { name: "Yuri Morais de Sales", role: "Sócio-Fundador", img: "/images/yuri.jpeg" },
+  { name: "Paulo Henrique Sousa Santos", role: "Sócio-Fundador", img: "/images/paulo.jpeg" },
+  { name: "Jaques Oliveira da Silva", role: "Sócio-Fundador", img: "/images/jaques.jpeg" },
 ];
 
 export default function Founders() {
   return (
     <section id="sobre" className="about-section">
       <div className="about-container">
-        {/* About text — full width, no repeated photo */}
+        {/* About text — full width */}
         <div className="about-text-wrap">
           <div className="about-text-col">
             <span className="eyebrow on-dark"><span className="mono">Sobre a Mastercont</span></span>
@@ -33,11 +33,9 @@ export default function Founders() {
               </p>
             </div>
 
-            {/* Credentials */}
-            <div className="about-creds">
-              <Cred label="CRC/TO" value="000860/O" />
-              <Cred label="CNPJ" value="47.321.741/0001-38" />
-              <Cred label="FUNDAÇÃO" value="Jul · 2022" />
+            <div className="about-founding">
+              <div className="mono" style={{ fontSize: 10, letterSpacing: ".2em", color: "#8f887c" }}>FUNDAÇÃO</div>
+              <div style={{ fontFamily: "var(--serif)", fontSize: 20, color: "var(--paper)", letterSpacing: "-.01em", marginTop: 4 }}>Jul · 2022</div>
             </div>
           </div>
         </div>
@@ -63,11 +61,7 @@ export default function Founders() {
                 }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={s.img}
-                  alt={s.name}
-                  className="socio-img"
-                />
+                <img src={s.img} alt={s.name} className="socio-img" />
               </div>
               <div className="socio-info">
                 <div className="mono" style={{ fontSize: 10, letterSpacing: ".2em", color: "var(--gold)" }}>
@@ -90,7 +84,6 @@ export default function Founders() {
           padding: 0 clamp(20px,4vw,48px);
         }
 
-        /* Text block — full width */
         .about-text-wrap {
           margin-bottom: 60px;
           padding-bottom: 60px;
@@ -103,7 +96,6 @@ export default function Founders() {
           line-height: 1.02; margin-top: 20px; margin-bottom: 32px;
           color: var(--paper);
         }
-        /* Two-column text on desktop */
         .about-body-cols {
           display: grid; grid-template-columns: 1fr 1fr;
           gap: 32px; margin-bottom: 0;
@@ -112,17 +104,15 @@ export default function Founders() {
           font-size: 16px; color: #b8b0a3;
           line-height: 1.65; margin: 0;
         }
-        .about-creds {
-          display: flex; gap: 48px; margin-top: 36px;
-          padding-top: 28px;
+        .about-founding {
+          margin-top: 32px;
+          padding-top: 24px;
           border-top: 1px solid rgba(255,255,255,.08);
-          flex-wrap: wrap;
+          display: inline-flex; flex-direction: column; gap: 0;
         }
 
         /* Founders */
-        .socios-header {
-          margin-bottom: 24px;
-        }
+        .socios-header { margin-bottom: 24px; }
         .socios-grid {
           display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
         }
@@ -153,18 +143,8 @@ export default function Founders() {
           .socios-grid { grid-template-columns: 1fr; gap: 20px; }
           .socio-photo { aspect-ratio: 4/3; }
           .socio-img { object-position: center 10%; }
-          .about-creds { gap: 24px; }
         }
       `}</style>
     </section>
-  );
-}
-
-function Cred({ label, value }: { label: string; value: string }) {
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-      <div className="mono" style={{ fontSize: 10, letterSpacing: ".2em", color: "#8f887c" }}>{label}</div>
-      <div style={{ fontFamily: "var(--serif)", fontSize: 20, color: "var(--paper)", letterSpacing: "-.01em" }}>{value}</div>
-    </div>
   );
 }

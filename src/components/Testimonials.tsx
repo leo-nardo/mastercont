@@ -23,13 +23,11 @@ export default function Testimonials() {
     <section id="depoimentos" className="testi-section">
       <div className="testi-container">
         <div className="testi-head">
-          <div>
-            <span className="eyebrow"><span className="mono">Depoimentos</span></span>
-            <h2 className="testi-h2">
-              Quem trabalha com a gente,<br />
-              <span className="italic-gold">fica com a gente.</span>
-            </h2>
-          </div>
+          <span className="eyebrow"><span className="mono">Depoimentos</span></span>
+          <h2 className="testi-h2">
+            Quem trabalha com a gente,<br />
+            <span className="italic-gold">fica com a gente.</span>
+          </h2>
           <p className="testi-lead">
             Atendemos empresas de diferentes portes e setores em Palmas e em todo o Brasil.
             Leia o que alguns dos nossos clientes dizem sobre trabalhar com a Mastercont.
@@ -69,15 +67,18 @@ export default function Testimonials() {
           padding: 0 clamp(20px,4vw,48px);
         }
         .testi-head {
-          display: grid; grid-template-columns: 1fr 1.4fr;
-          gap: 48px; margin-bottom: clamp(36px,6vw,72px); align-items: end;
+          text-align: center;
+          margin-bottom: clamp(40px,6vw,80px);
         }
         .testi-h2 {
           font-family: var(--serif);
-          font-size: clamp(34px,5vw,64px);
+          font-size: clamp(36px,5vw,68px);
           line-height: 1.02; margin-top: 20px; color: var(--ink);
         }
-        .testi-lead { font-size: 16px; color: var(--muted); max-width: 52ch; margin: 0; line-height: 1.6; }
+        .testi-lead {
+          font-size: 16px; color: var(--muted);
+          max-width: 56ch; margin: 20px auto 0; line-height: 1.6;
+        }
 
         .testi-grid {
           display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
@@ -117,7 +118,6 @@ export default function Testimonials() {
         }
 
         @media (max-width: 820px) {
-          .testi-head { grid-template-columns: 1fr; gap: 16px; }
           .testi-grid { grid-template-columns: 1fr; }
           .testi-card { min-height: auto; }
         }

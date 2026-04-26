@@ -10,14 +10,12 @@ export default function Process() {
     <section id="processo" className="proc-section">
       <div className="proc-container">
         <div className="proc-head">
-          <div>
-            <span className="eyebrow"><span className="mono">Como funciona</span></span>
-            <h2 className="proc-h2">
-              Do primeiro contato<br />
-              <span className="italic-gold">à virada de chave</span><br />
-              em 4 passos.
-            </h2>
-          </div>
+          <span className="eyebrow"><span className="mono">Como funciona</span></span>
+          <h2 className="proc-h2">
+            Do primeiro contato<br />
+            <span className="italic-gold">à virada de chave</span><br />
+            em 4 passos.
+          </h2>
           <p className="proc-lead">
             Sem burocracia desnecessária. Você fala com gente — não com formulários e respostas automáticas.
             Nossa meta é assumir sua contabilidade com segurança e no menor tempo possível.
@@ -69,15 +67,18 @@ export default function Process() {
           padding: 0 clamp(20px,4vw,48px);
         }
         .proc-head {
-          display: grid; grid-template-columns: 1fr 1.4fr;
-          gap: 48px; margin-bottom: clamp(36px,6vw,72px); align-items: end;
+          text-align: center;
+          margin-bottom: clamp(40px,6vw,80px);
         }
         .proc-h2 {
           font-family: var(--serif);
-          font-size: clamp(34px,5vw,64px);
+          font-size: clamp(36px,5vw,68px);
           line-height: 1.02; margin-top: 20px; color: var(--ink);
         }
-        .proc-lead { font-size: 16px; color: var(--muted); max-width: 52ch; margin: 0; line-height: 1.6; }
+        .proc-lead {
+          font-size: 16px; color: var(--muted);
+          max-width: 56ch; margin: 20px auto 0; line-height: 1.6;
+        }
 
         /* Horizontal (desktop) */
         .proc-track-h {
@@ -116,9 +117,6 @@ export default function Process() {
         }
         .proc-desc { color: var(--muted); font-size: 15px; margin: 0; line-height: 1.55; }
 
-        @media (max-width: 820px) {
-          .proc-head { grid-template-columns: 1fr; gap: 16px; }
-        }
         @media (max-width: 700px) {
           .proc-track-h { display: none; }
           .proc-track-v { display: flex; flex-direction: column; }
