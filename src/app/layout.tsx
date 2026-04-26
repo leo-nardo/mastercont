@@ -14,6 +14,8 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
 });
 
+const BASE_URL = "https://www.mastercont.com.br";
+
 export const metadata: Metadata = {
   title:
     "Mastercont – Contabilidade Consultiva em Palmas TO | CRC/TO 000860/O",
@@ -27,9 +29,26 @@ export const metadata: Metadata = {
       "Contabilidade consultiva que transforma números em decisões estratégicas. Planejamento tributário, recuperação tributária e gestão empresarial em Palmas — TO.",
     type: "website",
     locale: "pt_BR",
+    url: BASE_URL,
+    siteName: "Mastercont",
+    images: [
+      {
+        url: `${BASE_URL}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: "Mastercont – Contabilidade Consultiva em Palmas TO",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mastercont – Contabilidade Consultiva em Palmas TO",
+    description:
+      "Contabilidade consultiva que transforma números em decisões estratégicas. Planejamento tributário, recuperação tributária e gestão empresarial em Palmas — TO.",
+    images: [`${BASE_URL}/og-image.png`],
   },
   robots: { index: true, follow: true },
-  alternates: { canonical: "https://www.mastercont.com.br" },
+  alternates: { canonical: BASE_URL },
 };
 
 export default function RootLayout({
