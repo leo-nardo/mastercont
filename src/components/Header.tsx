@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const WA_LINK = "https://wa.me/556332150954?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Mastercont%20e%20gostaria%20de%20falar%20com%20voc%C3%AAs.";
 
@@ -33,7 +34,7 @@ export default function Header() {
         <div className="mct-nav-inner">
           {/* Brand */}
           <a href="#top" className="mct-brand">
-            <MasterMark />
+            <Image src="/logo-m-only.png" alt="Mastercont" width={32} height={32} style={{ objectFit: "contain" }} />
             <span className="mct-brand-name">Mastercont</span>
             <span className="mct-crc">CRC/TO 000860/O</span>
           </a>
@@ -172,26 +173,6 @@ export default function Header() {
         }
       `}</style>
     </>
-  );
-}
-
-function MasterMark() {
-  return (
-    <svg width="26" height="26" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <defs>
-        <linearGradient id="hgold" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#e8d9a8"/>
-          <stop offset="0.5" stopColor="#c9a961"/>
-          <stop offset="1" stopColor="#a8873f"/>
-        </linearGradient>
-        <linearGradient id="hsilv" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#cfcfcf"/>
-          <stop offset="1" stopColor="#7a7a7a"/>
-        </linearGradient>
-      </defs>
-      <path d="M5 34 L12 6 L20 22 L28 6 L35 34 L29 34 L25 16 L20 28 L15 16 L11 34 Z" fill="url(#hgold)"/>
-      <path d="M5 34 L12 6 L20 22 L15 16 L11 34 Z" fill="url(#hsilv)" opacity="0.85"/>
-    </svg>
   );
 }
 
