@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://www.mastercont.com.br/sitemap.xml",
+    sitemap: "https://www.mastercontpmw.com.br/sitemap.xml",
   };
 }

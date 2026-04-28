@@ -14,12 +14,13 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
 });
 
-const BASE_URL = "https://www.mastercont.com.br";
+const BASE_URL = "https://www.mastercontpmw.com.br";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AccountingService",
   name: "Mastercont Contadores Associados",
+  alternateName: ["Mastercont PMW", "mastercontpmw"],
   url: BASE_URL,
   logo: `${BASE_URL}/og-image.png`,
   image: `${BASE_URL}/og-image.png`,
@@ -44,6 +45,7 @@ const jsonLd = {
   },
   sameAs: [
     "https://www.instagram.com/mastercontpmw",
+    BASE_URL,
   ],
   priceRange: "$$",
   openingHoursSpecification: [
@@ -62,7 +64,7 @@ export const metadata: Metadata = {
   description:
     "Escritório de contabilidade consultiva em Palmas — Tocantins. Planejamento tributário, recuperação tributária, BPO financeiro e consultoria empresarial. Transformamos números em decisões estratégicas. CRC/TO 000860/O.",
   keywords:
-    "contador em Palmas, contabilidade Palmas Tocantins, recuperação tributária Palmas, planejamento tributário Palmas TO, abertura de empresa Palmas, departamento pessoal Tocantins, BPO financeiro Palmas, Mastercont, CRC/TO 000860",
+    "Mastercont, mastercontpmw, Mastercont PMW, contador em Palmas, contabilidade Palmas Tocantins, planejamento tributário Palmas TO, abertura de empresa Palmas, departamento pessoal Tocantins, BPO financeiro Palmas, CRC/TO 000860",
   openGraph: {
     title: "Mastercont – Contabilidade Consultiva em Palmas TO",
     description:
