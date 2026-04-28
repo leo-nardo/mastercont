@@ -16,6 +16,46 @@ const instrumentSerif = Instrument_Serif({
 
 const BASE_URL = "https://www.mastercont.com.br";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AccountingService",
+  name: "Mastercont Contadores Associados",
+  url: BASE_URL,
+  logo: `${BASE_URL}/og-image.png`,
+  image: `${BASE_URL}/og-image.png`,
+  description:
+    "Escritório de contabilidade consultiva em Palmas — Tocantins. Planejamento tributário, BPO financeiro e consultoria empresarial.",
+  telephone: "+55-63-3215-0954",
+  email: "contato@mastercontpmw.com.br",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Palmas",
+    addressRegion: "TO",
+    addressCountry: "BR",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: -10.1837,
+    longitude: -48.3336,
+  },
+  areaServed: {
+    "@type": "State",
+    name: "Tocantins",
+  },
+  sameAs: [
+    "https://www.instagram.com/mastercontpmw",
+  ],
+  priceRange: "$$",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "18:00",
+    },
+  ],
+};
+
 export const metadata: Metadata = {
   title:
     "Mastercont – Contabilidade Consultiva em Palmas TO | CRC/TO 000860/O",
@@ -58,7 +98,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${geistSans.variable} ${instrumentSerif.variable} antialiased`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </body>
     </html>
   );
 }
