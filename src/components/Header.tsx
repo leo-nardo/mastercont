@@ -6,7 +6,6 @@ const WA_LINK = "https://wa.me/556332150954?text=Ol%C3%A1!%20Vim%20pelo%20site%2
 
 const navLinks = [
   { label: "Serviços", href: "#servicos" },
-  { label: "Recuperação Tributária", href: "#recuperacao" },
   { label: "Sobre", href: "#sobre" },
   { label: "Depoimentos", href: "#depoimentos" },
   { label: "Contato", href: "#contato" },

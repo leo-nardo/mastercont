@@ -65,7 +65,6 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.65 }}
           >
-            <div className="hero-promise-pct">100%</div>
             <div className="hero-promise-body">
               <div className="hero-promise-title">Atendimento consultivo</div>
               <div className="hero-promise-sub">Contato direto com contadores — sem robôs, sem formulários</div>
@@ -146,16 +145,8 @@ export default function Hero() {
           padding-top: 24px;
           border-top: 1px solid rgba(255,255,255,.08);
         }
-        .hero-promise-pct {
-          font-family: var(--serif);
-          font-size: clamp(40px, 5vw, 60px);
-          line-height: 1; color: var(--gold);
-          letter-spacing: -.02em; flex-shrink: 0;
-        }
         .hero-promise-body {
           display: flex; flex-direction: column; gap: 4px;
-          border-left: 1px solid rgba(255,255,255,.1);
-          padding-left: 20px;
         }
         .hero-promise-title {
           font-size: 14px; color: var(--paper); font-weight: 500;

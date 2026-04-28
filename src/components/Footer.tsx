@@ -24,7 +24,6 @@ export default function Footer() {
               <ul className="footer-links">
                 {[
                   ["Serviços", "#servicos"],
-                  ["Recuperação tributária", "#recuperacao"],
                   ["Sobre", "#sobre"],
                   ["Depoimentos", "#depoimentos"],
                   ["FAQ", "#faq"],
