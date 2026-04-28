@@ -43,8 +43,10 @@ const jsonLd = {
     "@type": "State",
     name: "Tocantins",
   },
+  hasMap: "https://maps.app.goo.gl/WQoWQinsq48PKcUU9",
   sameAs: [
     "https://www.instagram.com/mastercontpmw",
+    "https://maps.app.goo.gl/WQoWQinsq48PKcUU9",
     BASE_URL,
   ],
   priceRange: "$$",
